@@ -1,0 +1,269 @@
+/* BASIC STYLING */
+
+body {
+	margin: 0;
+	padding: 0;
+	background-color: silver;
+    font-family: 'PT Sans', sans-serif;
+}
+
+#map, #gmap_map {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 270px;
+	bottom: 0;
+}
+
+svg {
+	background-color: slategray;
+	width: 100%;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+}
+
+#past {
+    color: black;
+}
+
+#now {
+    color: red;
+}
+
+svg.gmap {
+	background-color: transparent;
+	width: auto;
+	top: auto;
+	bottom: auto;
+	left: auto;
+	right: auto;
+}
+
+.overlay { /* for google map */
+	fill: none;
+	pointer-events: all;
+}
+
+
+#graticule {
+	fill: none;
+  	stroke: gray;
+	stroke-width: .5px;
+	stroke-opacity: .5;
+}
+
+.boundary {
+	fill: white;
+	stroke: gray;
+	stroke-width: .5px;
+	stroke-opacity: 1;
+}
+
+#states path {
+	fill: silver;
+	stroke-width: .5px;
+	stroke: gray;
+}
+
+#land path {
+	fill: silver;
+	stroke-width: .5px;
+	stroke: gray;
+}
+
+#countries path {
+	fill: silver;
+	stroke: white;
+}
+
+/* TOOLTIP */
+
+#title {
+	font-size: 18pt;
+}
+
+#author {
+	font-size: 10pt;
+	font-style: italic;
+	letter-spacing: 1px;
+}
+
+hr {
+	border: 0;
+	border-bottom: 1px solid gray;
+}
+
+#texts {
+	position: absolute;
+	right: 0px;
+	width: 249px;
+	height: 98%;
+	padding: 10px;
+	font-size: 12pt;
+	background-color: silver;
+	border-left: 1px solid black;
+}
+
+#tooltip {
+	margin-top: 1em;
+	font-size: 10pt;
+
+}
+
+/* MISC INTERFACE */
+
+
+#finddata {
+	width: 250px;
+}
+
+/* a nifty little CSS animation that makes a big stroke become normal again */
+
+.selected {
+    stroke: red;
+    animation: selectanim 200ms ease;
+    stroke-width: 8px;
+}
+@keyframes selectanim {
+  from { stroke-width: 500px; }
+  to { stroke-width: 4px; }
+}
+
+/* text for the legend */
+#legend .label {
+    font-size: 10pt;
+	pointer-events: none; /* ignore mouse clicks */
+}
+
+/* this makes it so that whenever it zooms in, the strokes will not also scale as well */
+path,circle {
+    vector-effect: non-scaling-stroke; 
+}
+
+/* text caption labels */
+.label {
+	opacity: .4;
+	font-size: 14pt;
+	pointer-events: none; /* ignore mouse clicks */
+}
+.label_point {
+	stroke: none;
+	pointer-events: none; /* ignore mouse clicks */
+}
+
+
+/* applied to data when mouse is over */
+.highlight {
+    stroke-width: 4px;
+    opacity: 1.0;
+}
+
+/* DATA STUFF */
+
+circle {
+	fill-opacity: .8;
+	stroke: white;
+	stroke-width: 1;
+	opacity: .5;
+}
+
+.data_visible {
+	opacity: .5;
+}
+
+.data_hidden {
+	display: none;
+}
+
+.data_has_keyword {
+	display: block;
+}
+
+.data_lacks_keyword {
+	display: none;
+}
+
+.data_in_range {
+	display: block;
+}
+
+.data_date_now {
+	opacity: 1;
+	visibility: visible;
+}
+
+.data_date_past {
+	opacity: .2;
+}
+
+.data_date_future {
+	visibility: hidden;
+}
+
+.data_out_range {
+	display: none;
+}
+
+
+.label_point {
+	display: none;
+}
+
+.label {
+	opacity: .5;
+	font-size: 14pt;
+}
+
+
+.heatmap_canvas {
+	position: relative;
+}
+
+.heatmapSVG {
+	pointer-events: none;
+}
+
+.heatmap {
+	visibility: hidden;
+	position: absolute !important;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	pointer-events: none;
+}
+
+.timeline_anim a {
+	text-decoration: none;
+}
+
+.timeline_slider {
+	width: 99%;
+	height: 5px;
+}
+
+
+/* applied to data when mouse is over */
+.mouseover {
+    stroke-width: 4px;
+    opacity: 1.0;
+}
+
+/* a nifty little CSS animation that makes a big stroke become normal again */
+.selected {
+    stroke: red;
+    animation: selectanim 200ms ease;
+    stroke-width: 8px;
+}
+@keyframes selectanim {
+  from { stroke-width: 500px; }
+  to { stroke-width: 4px; }
+}
+
+/* caption for the tooltip */
+#tooltip {
+	margin-top: 1em;
+	font-size: 10pt;
+}
