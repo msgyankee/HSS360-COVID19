@@ -112,7 +112,7 @@ function d3Data(options) {
 	d3VizObj.data.push(this);
 	this.id = d3VizObj.data.length-1;
 	
-	this.load = function () {
+	this.load = async function () {
 		if(obj.csv) {
 			this.delim = ",";
 			this.file = obj.csv;
@@ -146,9 +146,28 @@ function d3Data(options) {
 				d3VizObj.runHook("run_after_data_loaded",obj);
 				d3VizObj.is_loaded(obj);
 			})
-		} else {
+		} else if(obj.csvext) {
+            obj.csv = obj.csvext;
+            obj.delim = ',';
+            obj.file = obj.csv;
+            obj.filetype = "CSV";
+            d3.csv(this.csvext, function(error, data){
+                    if(error) console.log(error);
+                    else{ 
+                        obj.data = data;
+                        console.log(obj);
+                        d3VizObj.runHook("run_after_data_loaded",obj);
+                        d3VizObj.is_loaded(obj);
+                    } 
+                });
+            
+        }
+
+        else {
 			if(debug||obj.debug) console.log("No file specified!"); //maybe someday add other types of support
-			d3VizObj.is_loaded(this);
+			d3VizObj.runHook("run_after_data_loaded",obj)
+            d3VizObj.is_loaded(this);
+
 		}	
 	}		
 }

@@ -59,10 +59,12 @@ var map = new d3SVGMap({
 
 
 //Here is where you should put the data files, in csv format. 
-
+var csvsource = "https://raw.githubusercontent.com/msgyankee/HSS360-COVID19/master/examples/US_unemployment_by_county.csv";
+    
+    
 var unemploymentData = new d3Data({
 	name: "US unemployment by county",
-	csv: "US_unemployment_by_county.csv",
+	csvext: csvsource
 })
 //note that this dataset does not have a latLon constructor -- it doesn't use that, so we just omit it
 
