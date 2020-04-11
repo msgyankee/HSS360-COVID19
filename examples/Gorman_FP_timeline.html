@@ -74,10 +74,11 @@ var map = new d3SVGMap({
 
 
 //Here is where you should put the data files, in csv format. 
-
+var csvsource = "https://raw.githubusercontent.com/msgyankee/HSS360-COVID19/master/examples/pah_wikp_combo_New.csv"
+console.log(csvsource);
 var schoolData = new d3Data({
 	name: "School Shooting Incidents 1990-2019",
-	csv: d3.csv("https://raw.githubusercontent.com/msgyankee/HSS360-COVID19/getRequestTest/examples/pah_wikp_combo_New.csv", function(error, data) { if(error) console.log(error); return data; }),
+	csv: d3.csv(csvsource, function(error, data) { if(error) console.log(error); return data; }),
 	latLon: function(d) { return [ parseFloat(d["Lat"]), parseFloat(d["Lon"]) ];}
 })
 
