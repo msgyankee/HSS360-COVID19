@@ -1,0 +1,52 @@
+State,Abbreviation,firstCaseDate,firstCountyDetected,stateOfEmergency,stayAtHome,DifFirstCaseStayHome,LessThan2Weeks
+Alabama,AL,3/13/2020,Elmore,3/13/2020,4/4/2020,22,FALSE
+Alaska,AK,3/12/2020,Anchorage,3/11/2020,3/28/2020,16,FALSE
+Arizona,AZ,1/26/2020,Maricopa,3/11/2020,3/31/2020,65,FALSE
+Arkansas,AR,3/11/2020,Jefferson,3/11/2020,N/A,N/A,FALSE
+California,CA,1/25/2020,Orange,3/4/2020,3/19/2020,54,FALSE
+Colorado,CO,3/5/2020,Douglas,3/10/2020,3/26/2020,21,FALSE
+Connecticut,CT,3/8/2020,Fairfield,3/10/2020,3/23/2020,15,FALSE
+Delaware,DE,3/11/2020,New Castle,3/12/2020,3/24/2020,13,TRUE
+District of Columbia,DC,3/7/2020,District of Columbia,3/11/2020,3/30/2020,23,FALSE
+Florida,FL,3/1/2020,Hillsborough,3/1/2020,4/3/2020,33,FALSE
+Georgia,GA,3/2/2020,Fulton,3/14/2020,4/3/2020,32,FALSE
+Hawaii,HI,3/6/2020,Honolulu,3/4/2020,3/25/2020,19,FALSE
+Idaho,ID,3/13/2020,Ada,3/13/2020,3/25/2020,12,TRUE
+Illinois,IL,1/24/2020,Cook,3/9/2020,3/21/2020,57,FALSE
+Indiana,IN,3/6/2020,Marion,3/6/2020,3/6/2020,0,TRUE
+Iowa,IA,3/8/2020,Johnson,3/9/2020,N/A,N/A,FALSE
+Kansas,KS,3/7/2020,Johnson,3/9/2020,3/30/2020,23,FALSE
+Kentucky,KY,3/6/2020,Fayette,3/6/2020,N/A,N/A,FALSE
+Louisiana,LA,3/9/2020,Jefferson,3/11/2020,3/23/2020,14,TRUE
+Maine,ME,3/12/2020,Androscoggin,3/15/2020,4/2/2020,21,FALSE
+Maryland,MD,3/5/2020,Montgomery,3/5/2020,3/30/2020,25,FALSE
+Massachusetts,MA,2/1/2020,Suffolk,3/10/2020,N/A,N/A,FALSE
+Michigan,MI,3/10/2020,Oakland,3/11/2020,3/24/2020,14,TRUE
+Minnesota,MN,3/6/2020,Ramsey,3/13/2020,3/27/2020,21,FALSE
+Mississippi,MS,3/11/2020,Forrest,3/4/2020,4/3/2020,23,FALSE
+Missouri,MO,3/7/2020,St. Louis,3/13/2020,4/6/2020,30,FALSE
+Montana,MT,3/13/2020,Gallatin,3/12/2020,3/28/2020,15,FALSE
+Nebraska,NE,2/17/2020,Douglas,3/13/2020,N/A,N/A,FALSE
+Nevada,NV,3/5/2020,Clark,3/12/2020,4/1/2020,27,FALSE
+New Hampshire,NH,3/2/2020,Grafton,3/13/2020,3/27/2020,25,FALSE
+New Jersey,NJ,3/4/2020,Bergen,3/9/2020,3/21/2020,17,FALSE
+New Mexico,NM,3/11/2020,Bernalillo,3/11/2020,3/24/2020,13,TRUE
+New York,NY,3/1/2020,New York City,3/7/2020,3/22/2020,21,FALSE
+North Carolina,NC,3/3/2020,Wake,3/10/2020,3/30/2020,27,FALSE
+North Dakota,ND,3/11/2020,Ward,3/13/2020,N/A,N/A,FALSE
+Ohio,OH,3/9/2020,Cuyahoga,3/9/2020,3/23/2020,14,TRUE
+Oklahoma,OK,3/6/2020,Tulsa,3/15/2020,N/A,N/A,FALSE
+Oregon,OR,2/28/2020,Washington,3/8/2020,3/23/2020,24,FALSE
+Pennsylvania,PA,3/6/2020,Delaware,3/6/2020,4/1/2020,26,FALSE
+Rhode Island,RI,3/1/2020,Unknown,3/9/2020,3/28/2020,27,FALSE
+South Carolina,SC,3/6/2020,Charleston,3/13/2020,4/7/2020,32,FALSE
+South Dakota,SD,3/10/2020,Beadle,3/13/2020,N/A,N/A,FALSE
+Tennessee,TN,3/5/2020,Williamson,3/12/2020,4/2/2020,28,FALSE
+Texas,TX,2/12/2020,Texas,3/13/2020,4/2/2020,50,FALSE
+Utah,UT,2/25/2020,Salt Lake,3/6/2020,N/A,N/A,FALSE
+Vermont,VT,3/7/2020,Bennington,3/16/2020,3/25/2020,18,FALSE
+Virginia,VA,3/7/2020,Fairfax,3/12/2020,3/30/2020,23,FALSE
+Washington,WA,1/21/2020,Snohomish,2/29/2020,3/23/2020,62,FALSE
+West Virginia,WV,3/17/2020,Jefferson,3/4/2020,3/23/2020,6,TRUE
+Wisconsin,WI,2/5/2020,Dane,3/12/2020,3/25/2020,49,FALSE
+Wyoming,WY,3/11/2020,Sheridan,3/12/2020,N/A,N/A,FALSE
