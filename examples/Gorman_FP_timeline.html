@@ -78,7 +78,7 @@ var csvsource = "https://raw.githubusercontent.com/msgyankee/HSS360-COVID19/mast
 console.log(csvsource);
 var schoolData = new d3Data({
 	name: "School Shooting Incidents 1990-2019",
-	csv: d3.csv(csvsource, function(error, data) { if(error) console.log(error); return data; }),
+	csv: d3.csv(csvsource, (data) => return data;),
 	latLon: function(d) { return [ parseFloat(d["Lat"]), parseFloat(d["Lon"]) ];}
 })
 
