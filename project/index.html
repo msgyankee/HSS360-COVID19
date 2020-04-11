@@ -15,6 +15,11 @@
 <script type="text/javascript">
 /* Flexible D3.js global data viewer — by Alex Wellerstein, 2015-2016, v2.0 */
 	
+function dateToArr(date){
+	var split = date.split("/");
+	return [parseInt(split[2]), parseInt(split[0]), parseInt(split[1])];
+}
+	
 /* MAP OPTIONS */
 
 //creates a new D3 JSON map object
@@ -78,40 +83,37 @@ var captions = new textCaptions({
 
 
 //set up a color scale for total numbers
-var color_linear_total = d3.scale.linear()
-    .domain([-1,0,7000,20100]) //minimum and maximum or other fields
-    .range(["silver","white", "red","maroon"]); //start and end colors
 
 //another one for yearly totals
 var color_linear_daily = d3.scale.linear()
-    .domain([-1,0,400]) //minimum and maximum or other fields
-    .range(["silver","white", "red"]); //start and end colors
+    .domain([-100,-5,0,1,65]) //minimum and maximum or other fields
+    .range(["silver","green", "lightgreen","lightred", "red"]); //start and end colors
 
 //create a choropleth visualization
 var choropleth = new SVGChoropleth({
 	map: map,
 
-	data: sterilizationData,
+	data: SAHdata,
 
-	id_field: function(d) { return "c_"+state_id_from_abbr(d["state"]) }, //function that returns the field in the dataset that corresponds to map location ids
+	id_field: function(d) { return "c_"+state_id_from_abbr(d["Abbreviation"]) }, //function that returns the field in the dataset that corresponds to map location ids
 
-	color_field: function(d) { return d["total"] }, //function that returns the value in the dataset that determines what color each part of the map should be colored
+	color_field: function(d) { d["DifFirstCaseStayHome"]}, //function that returns the value in the dataset that determines what color each part of the map should be colored
 
-	color_scale: color_linear_total, //the function that determines what colors to assign to the map based on value
+	color_scale: color_linear_daily, //the function that determines what colors to assign to the map based on value
 
 	//this is just a very basic example that shows how you can add a data-driven caption to a choropleth map
 	//note that we needed to create the captions object first, above. 
 	//we use each_once and not each because otherwise it'll run whenever the map data is reshown.
 	each_once: function(d,i,obj,feature) {
-		if(parseFloat(d["total"])) { //only if there is any data, we show a caption
-			var pos = this.map.path.centroid(feature); //the feature contains the coordinate data. we can get its centerpoint this way.
-			captions.addCaption({ //add a caption
-				caption: d["state"], 
-				x: pos[0], 
-				y: pos[1],
-				xoffset: -10, //this moves the text a little bit to the left, which sort of centers it better
-			})
-		}
+		
+		var pos = this.map.path.centroid(feature); //the feature contains the coordinate data. we can get its centerpoint this way.
+		captions.addCaption({ //add a caption
+			caption: d["state"], 
+			x: pos[0], 
+			y: pos[1],
+			xoffset: -10, //this moves the text a little bit to the left, which sort of centers it better
+		})
+		
 
 	},
 	
@@ -121,21 +123,19 @@ var choropleth = new SVGChoropleth({
 
 	mouseover_caption: 		//function that determines the caption that is displayed when the mouse hovers over a colored part of the map
 		function(d) {
-			var c = "<big><u><b>"+state_name(d["state"])+"</b></u></big><br><table>";
-			c+="<tr><td>Pre-1943:</td><td style='text-align:right'><b>"+addCommas(+d["pre-1943"]>0?d["pre-1943"]:0)+"</b></td></tr>";
-			for(var i=1943;i<=1963;i++) {
-				c+="<tr><td>"+i+":</td><td style='text-align:right'><b>"+addCommas(+d[i]>0?d[i]:0)+"</b></td></tr>";
-			}
-			c+="<tr><td style='border-top: 1px solid black;'>Total:</td><td style='border-top: 1px solid black;'><b>"+addCommas(+d["total"]>0?d["total"]:0)+"</b></td></tr></table>"
-			return c;
-			},
+			
+			return "<b><big>"+d["State"]+"</big></b><br>"
+					+ "First Confirmed Case: "+d["firstCaseDate"] +"<br>"
+					+ "Stay at Home Ordered: "+d["stayAtHome"] +"<br>"
+					+ "Difference in days: "+d["DifFirstCaseStayHome"];
+		}
 })
 
 //create a timeline controller
 var timeline = new Timeline({
 	map: map,
 
-	data: sterilizationData,
+	data: SAHdata,
 
 	startDate: [2020,1,19], //an array that says what day to start. Fields are (in order), YEAR, MONTH, DAY, HOUR, MINUTE, SECOND. If you don't want to track a given period of time, you can leave it out, or leave it as 0.
 	stopDate:  [2020,4,7], //same as the above, but for the stop date. 
@@ -149,18 +149,30 @@ var timeline = new Timeline({
 	onDateTick:  //function that is triggered each time the date ticks — could update a caption, for example
 		function(currentDate) { //simple example that would change the text of an element with the id of "date_status":
 			//note that currentDate[0] means get the YEAR only
-			if(currentDate[0]==1942) {
-				choropleth.color_field = function(d) { return d["pre-1943"] };
-				choropleth.color_scale = color_linear_total;
-				document.getElementById("date_status").innerHTML = "pre-1943 total";
-			} else if(currentDate[0]==1964) {
-				choropleth.color_field = function(d) { return d["total"] };
-				choropleth.color_scale = color_linear_total;
-				document.getElementById("date_status").innerHTML = "1907-1963 total";			
+			if(currentDate[0]==2020 && currentDate[4] && currentDate[7]) {
+				choropleth.color_field = function(d) { return d["DifFirstCaseStayHome"] };
+				document.getElementById("date_status").innerHTML = String(currentDate[1]) + "/" + String(currentDate[2]) + "/" + String(currentDate[0]);
 			} else {
-				choropleth.color_field = function(d) { return d[String(currentDate[0])] };
-				choropleth.color_scale = color_linear_yearly;
-				document.getElementById("date_status").innerHTML = currentDate[0]			
+				choropleth.color_field = function(d) {
+					console.log(d["State"]);
+					if(d["stayAtHome"] == "N/A") return -100;
+					
+					var cDate = new Date(currentDate[1] + "/" + currentDate[2] + "/" + currentDate[0]);
+					var caseDate = new Date(d['firstCaseDate']);
+					var sahDate = new Date(d["stayAtHome"]);
+					
+					if(cDate < caseDate) return -100;
+					else if (cDate > sahDate) return d["DifFirstCaseStayHome"];
+					else {
+						console.log("cDate: "+cDate);
+						console.log("caseDate: "+caseDate);
+						console.log("sahDate: "+sahDate);
+						console.log((cDate - caseDate) / (1000*60*60*24));
+						return (cDate - caseDate) / (1000*60*60*24);
+					}
+					
+				};
+				document.getElementById("date_status").innerHTML = String(currentDate[1]) + "/" + String(currentDate[2]) + "/" + String(currentDate[0]);			
 			}
 			choropleth.showData(); //refresh
 		},
@@ -191,7 +203,7 @@ window.onload = init;
 		<hr>
 		<div id="options"></div>
 		<div id="slider"></div>
-		<div id="date_status">1907-1963 total</div>
+		<div id="date_status">4/7/2020</div>
         <p>Shows how responsive each state was at issuing a stay at home order in regards to their first confirmed positive case of COVID-19</p>
 	</div>
 </body>
