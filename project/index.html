@@ -76,18 +76,14 @@ var SAHdata = new d3Data({
 // Visualizations will be "stacked", from the "bottom" up, as we add them. 
 // So if we want captions to be UNDER the data, we need to put them first.
 // This isn't going to do anything but create a layer for them, and assign the class and the map.
-var captions = new textCaptions({
-	map: map, //which map object they go on	
-	class: "captions", //class name for captions (for styling)
-})
 
 
 //set up a color scale for total numbers
 
 //another one for yearly totals
 var color_linear_daily = d3.scale.linear()
-    .domain([-100,-5,0,1,65]) //minimum and maximum or other fields
-    .range(["silver","green", "lightgreen","lightred", "red"]); //start and end colors
+    .domain([-100,-5,0,65]) //minimum and maximum or other fields
+    .range(["silver","green","purple", "red"]); //start and end colors
 
 //create a choropleth visualization
 var choropleth = new SVGChoropleth({
@@ -99,27 +95,7 @@ var choropleth = new SVGChoropleth({
 
 	color_field: function(d) { d["DifFirstCaseStayHome"]}, //function that returns the value in the dataset that determines what color each part of the map should be colored
 
-	color_scale: color_linear_daily, //the function that determines what colors to assign to the map based on value
-
-	//this is just a very basic example that shows how you can add a data-driven caption to a choropleth map
-	//note that we needed to create the captions object first, above. 
-	//we use each_once and not each because otherwise it'll run whenever the map data is reshown.
-	each_once: function(d,i,obj,feature) {
-		
-		var pos = this.map.path.centroid(feature); //the feature contains the coordinate data. we can get its centerpoint this way.
-		captions.addCaption({ //add a caption
-			caption: d["state"], 
-			x: pos[0], 
-			y: pos[1],
-			xoffset: -10, //this moves the text a little bit to the left, which sort of centers it better
-		})
-		
-
-	},
-	
-	loaded: function() {  //this just keeps the captions from being added every time the timeline reupdates the data
-		addedCaptions = true;
-	},
+	color_scale: color_linear_daily, //the function that determines what colors to assign to the map based on value	
 
 	mouseover_caption: 		//function that determines the caption that is displayed when the mouse hovers over a colored part of the map
 		function(d) {
@@ -154,7 +130,6 @@ var timeline = new Timeline({
 				document.getElementById("date_status").innerHTML = String(currentDate[1]) + "/" + String(currentDate[2]) + "/" + String(currentDate[0]);
 			} else {
 				choropleth.color_field = function(d) {
-					console.log(d["State"]);
 					if(d["stayAtHome"] == "N/A") return -100;
 					
 					var cDate = new Date(currentDate[1] + "/" + currentDate[2] + "/" + currentDate[0]);
@@ -164,10 +139,6 @@ var timeline = new Timeline({
 					if(cDate < caseDate) return -100;
 					else if (cDate > sahDate) return d["DifFirstCaseStayHome"];
 					else {
-						console.log("cDate: "+cDate);
-						console.log("caseDate: "+caseDate);
-						console.log("sahDate: "+sahDate);
-						console.log((cDate - caseDate) / (1000*60*60*24));
 						return (cDate - caseDate) / (1000*60*60*24);
 					}
 					
@@ -204,7 +175,8 @@ window.onload = init;
 		<div id="options"></div>
 		<div id="slider"></div>
 		<div id="date_status">4/7/2020</div>
-        <p>Shows how responsive each state was at issuing a stay at home order in regards to their first confirmed positive case of COVID-19</p>
+        <p>Shows how responsive each state was at issuing a stay at home order in regards to their first confirmed positive case of COVID-19</p><br>
+		<p>On the map states will appear silver until their first case passes. At that point, they will turn purple, and become closer to red as time goes on and they have not issued a Stay at Home order, at which point their color will freeze. States that remain silver have not implemented a statewide Stay at Home Order</p>
 	</div>
 </body>
 </html>
