@@ -143,6 +143,7 @@ function d3Data(options) {
 						i++;
 					}
 				})
+                if(debug) console.log(obj.data);
 				d3VizObj.runHook("run_after_data_loaded",obj);
 				d3VizObj.is_loaded(obj);
 			})
