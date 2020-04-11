@@ -77,7 +77,7 @@ var map = new d3SVGMap({
 
 var schoolData = new d3Data({
 	name: "School Shooting Incidents 1990-2019",
-	csv: d3.csv("https://raw.githubusercontent.com/msgyankee/HSS360-COVID19/getRequestTest/examples/pah_wikp_combo_New.csv", function(error, data) { if(error) console.log(error); return data; });
+	csv: d3.csv("https://raw.githubusercontent.com/msgyankee/HSS360-COVID19/getRequestTest/examples/pah_wikp_combo_New.csv", function(error, data) { if(error) console.log(error); return data; }),
 	latLon: function(d) { return [ parseFloat(d["Lat"]), parseFloat(d["Lon"]) ];}
 })
 
