@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Flexible data template</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=10" />
+<link rel="stylesheet" type="text/css" href="examples.css"></link>
+<script src="../resources/d3.v3.min.js"></script>    
+<script src="../resources/topojson.v1.min.js"></script>
+<script src="../resources/d3.geo.projection.v0.min.js"></script>
+<script src="../resources/jquery-1.10.2.js"></script>
+<script src="../resources/shared.js"></script>
+<script src="../resources/all.php"></script>
+
+
+<script type="text/javascript">
+/* Flexible D3.js global data viewer — by Alex Wellerstein, 2015-2016, v2.0 */
+	
+/* MAP OPTIONS */
+
+//creates a new D3 JSON map object
+var map = new d3SVGMap({
+	div: "#map",
+	width: 960,
+	height: window.innerHeight,
+	mapfile: "./us.counties.json",
+	projection_name: "albersUsa",
+	//projection_rotate: [0,0,0], //don't rotate the albersUsa projection or else it won't work -- it is special in this way
+	projection_scale: 1280,
+	projection_translate: [960/2,window.innerHeight/2],
+	graticule_function: d3.geo.graticule(),
+	
+	loadobjects: ["states"],
+	
+	setid: function(d,obj) { //for a choropleth, it is important that we make sure that the geoJSON has its ids set correctly
+		return "c_"+d.id; //in this case, us.counties.json has each item tagged with an "id" already, so we just pass that back
+	},
+	
+	onload: function() {	
+		//this designates what the "tooltip" is going to be
+		map.tooltip = d3.select("#texts")
+					.append("div")
+					.attr("id","tooltip")
+					.text("");
+
+	}
+
+});
+
+
+/* DATA SPECIFIC OPTIONS -- you need to tailor these to your dataset */
+
+// NOTE! Anytime you see something like d["something here"], this means
+// that you are referencing a column in the CSV file. The script is smart
+// enough so that it knows that if you put d["something here"] you mean,
+// "access the data in the column whose header (first entry) is 'something here'."
+// So to adapt this to another dataset, you must know the column heads, and find
+// the places in the template below to change it to your own column headings.
+
+
+//Here is where you should put the data files, in csv format. 
+
+var choroplethData = new d3Data({
+	name: "Severity of Preventative Measures",
+	csv: "implement_data.csv",
+})
+//note that this dataset does not have a latLon constructor -- it doesn't use that, so we just omit it
+
+/* END DATA-SPECIFIC OPTIONS */
+
+
+//initialization functions go here
+
+
+//create a choropleth visualization
+var choropleth = new SVGChoropleth({
+
+	data: unemploymentData, //dataset used to associate ids and data
+
+	id_field: function(d) { return "c_"+d["Location"] },	//function that returns the field in the dataset that corresponds to the ids to color
+
+	color_field: function(d) { return d["score"] }, //function that returns the value in the dataset that determines what color each part of the map should be colored
+
+	color_scale: d3.scale.linear() //the function that determines what colors to assign to the map based on value
+    				.domain([1,12]) //value points
+    				.range(["silver", "white", "red","maroon"])
+    , 
+    
+    color_target: "fill", //the entity to color
+
+	mouseover_caption: 		//function that determines the caption that is displayed when the mouse hovers over a colored part of the map
+		function(d,feature,obj) { //d = the associated piece of data (from the data set) associated with the shape feature; feature = the shape feature's own data; obj = the d3 object of the shape feature
+				return Location(d["Location"])+" (#"+d["Location"]+")<br><b>"+(Math.round(d["score"]*100))+"%</b> State's score<br>";
+	},
+	
+	caption_id: "tooltip", //necessary for mouseover captions, etc.
+	
+})
+
+var zoomer = new mouseZoomer({
+	map: map,
+	zoom_if_clicked: ["path"],
+	zoom_to_centroid: false,
+	zoom_transition_speed: 700,	
+	zoom_factor: 10, //makes this zoom in a lot more than default (which is 3)
+})
+
+
+//startup (runs after all elements/scripts/etc. on the page have loaded).
+function init() {
+	window.debug = true; //show some information in the console
+	window.debug_verbose = false; //show a LOT of information in the console
+	d3VizObj.load(); //loads all visualization elements
+}
+window.onload = init;
+
+
+</script>
+</head>
+<body>
+	<div id="map"></div>
+	<div id="texts">
+		<div id="title">US unemployment rates</div>
+		<div id="author">by Alex Wellerstein</div>
+		<hr>
+		<p>
+		A choropleth is a map where various regions are colored according to a data value. 
+		</p>
+		<p> 
+		<div id="options"></div>
+	</div>
+</body>
+</html>
