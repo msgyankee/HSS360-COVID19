@@ -1,72 +1,52 @@
-Title: State Data and Policy Actions to Address Coronavirus | The Henry J. Kaiser Family Foundation,,,,,,,,,,
-Timeframe: Varies,,,,,,,,,,
-Location,stay_at_home_order,mandatory_quarantine_for_travelers,non_essential_business_closures,large_gathering_bans,state_mandated_school_closures,bar_restaurant_limits,primary_election_postponement,Emergency Declaration,footnotes,score
-United States,Statewide (43); High-risk Groups (2); No Action (6),All Travelers (13); All Air Travelers (1); From Certain States (7); No Action (30),All Non-Essential Businesses (39); All Non-Essential Retail Businesses (4); No Action (8),All Gatherings Prohibited (18); >10 Prohibited (26); Other (4); No action (3),Yes (49); Effectively Closed (2),Closed except for takeout/delivery (47); Limited On-site Service (2); Other (1); No action (1),Yes (13); No (38),Yes (51); No (0),,
-Alabama,2,0,2,1,Yes,2,1,Yes,,8
-Alaska,2,3,2,2,Yes,2,0,Yes,,11
-Arizona,2,1,2,1,Yes,2,0,Yes,,8
-Arkansas,0,0,0,1,Yes,2,0,Yes,,3
-California,2,0,2,2,Effectively Closed,2,0,Yes,1,8
-Colorado,2,0,2,2,Yes,2,0,Yes,,8
-Connecticut,2,0,2,Other,Yes,2,1,Yes,"2, 3",7
-Delaware,2,3,2,1,Yes,2,1,Yes,,11
-District of Columbia,2,0,2,1,Yes,2,0,Yes,,7
-Florida,2,1,2,Other,Yes,2,0,Yes,4,7
-Georgia,2,0,2,1,Yes,2,1,Yes,5,8
-Hawaii,2,3,2,1,Yes,2,0,Yes,,10
-Idaho,2,0,2,2,Effectively Closed,2,0,Yes,,8
-Illinois,2,0,2,2,Yes,2,0,Yes,,8
-Indiana,2,0,2,2,Yes,2,1,Yes,,9
-Iowa,0,0,2,1,Yes,2,0,Yes,5,5
-Kansas,2,1,2,1,Yes,1,0,Yes,,7
-Kentucky,2,3,1,2,Yes,2,1,Yes,"2, 6",11
-Louisiana,2,0,0,1,Yes,2,1,Yes,,6
-Maine,2,3,2,1,Yes,2,0,Yes,,10
-Maryland,2,3,2,1,Yes,2,1,Yes,,11
-Massachusetts,2,3,2,1,Yes,2,0,Yes,2,10
-Michigan,2,0,2,2,Yes,2,0,Yes,,8
-Minnesota,2,0,0,0,Yes,2,0,Yes,,4
-Mississippi,2,0,2,1,Yes,2,1,Yes,,8
-Missouri,2,0,2,1,Yes,2,0,Yes,,7
-Montana,2,3,2,2,Yes,2,0,Yes,,11
-Nebraska,0,0,0,1,Yes,2,0,Yes,7,3
-Nevada,2,0,2,1,Yes,2,0,Yes,6,7
-New Hampshire,2,0,2,1,Yes,2,0,Yes,,7
-New Jersey,2,0,1,2,Yes,2,0,Yes,,7
-New Mexico,2,2,2,2,Yes,1,0,Yes,6,9
-New York,2,0,2,2,Yes,2,1,Yes,2,9
-North Carolina,2,0,2,1,Yes,2,0,Yes,6,7
-North Dakota,0,1,2,0,Yes,2,0,Yes,5,5
-Ohio,2,3,2,2,Yes,2,1,Yes,,12
-Oklahoma,1,1,2,1,Yes,Other,0,Yes,8,5
-Oregon,2,0,1,2,Yes,2,0,Yes,,7
-Pennsylvania,2,0,2,2,Yes,2,0,Yes,,8
-Rhode Island,2,3,1,Other,Yes,2,1,Yes,3,9
-South Carolina,2,0,2,2,Yes,2,0,Yes,,8
-South Dakota,0,0,0,1,Yes,0,0,Yes,,1
-Tennessee,2,0,2,1,Yes,2,0,Yes,,7
-Texas,2,1,0,1,Yes,2,0,Yes,9,6
-Utah,1,3,0,0,Yes,2,0,Yes,,6
-Vermont,2,3,2,1,Yes,2,0,Yes,10,10
-Virginia,2,0,2,1,Yes,2,0,Yes,5,7
-Washington,2,0,2,2,Yes,2,0,Yes,,8
-West Virginia,2,1,2,Other,Yes,2,1,Yes,3,8
-Wisconsin,2,0,2,2,Yes,2,0,Yes,,8
-Wyoming,0,3,0,1,Yes,2,0,Yes,,6
-Notes,,,,,,,,,,
-"For purposes of this table, states were included if they mandated the listed actions. A number of states released guidance or recommendations related to the actions listed in this table but fell short of issuing a requirement and are thus not included.",,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-Footnotes,,,,,,,,,,
-"1. While the CA governor has not officially mandated the statewide closure of schools, the state's mandatory quarantine order effectively closes all schools.",,,,,,,,,,
-"2. These states have not formally issued stay at home orders; however, other actions, including closing non-essential businesses, banning large gatherings, and issuing advisories urging residents to stay home, have had the same effect.",,,,,,,,,,
-"3. CT, RI, and WV have prohibited gatherings larger than five people, with limited exceptions.",,,,,,,,,,
-"4. The FL governor has prohibited gatherings of more than 10 people in public spaces, but limits on private gatherings have fallen short of a mandate.",,,,,,,,,,
-"5. Governors in GA, IA, ND, and VA have closed many, but not all, non-essential businesses.",,,,,,,,,,
-6. Please see links in Sources tab for more details.,,,,,,,,,,
-7. NE has enacted a large gatherings ban and bar/restaurant limits in counties where community spread has been confirmed.,,,,,,,,,,
-8. OK has mandated closure of all non-essential businesses and limited bar/restaurants to carry-out and delivery only in affected counties.,,,,,,,,,,
-"9. The TX governor has ordered that every person in Texas shall, except where necessary to provide or obtain essential services, minimize social gatherings and minimize in-person contact with people who are not in the same household",,,,,,,,,,
-10. Gatherings also limited to 50% of venue capacity if such limitation would be under 50 people.,,,,,,,,,,
-,,,,,,,,,,
-"To assign numerical values to this data set, for values that just said ""Other"" we used other sources and our best judgement to assign a number to ""Other""",,,,,,,,,,
+Location,Abbreviation,stay_at_home_order,mandatory_quarantine_for_travelers,non_essential_business_closures,large_gathering_bans,state_mandated_school_closures,bar_restaurant_limits,primary_election_postponement,Emergency Declaration,footnotes,score
+Alabama,AL,2,0,2,1,Yes,2,1,Yes,,8
+Alaska,AK,2,3,2,2,Yes,2,0,Yes,,11
+Arizona,AZ,2,1,2,1,Yes,2,0,Yes,,8
+Arkansas,AR,0,0,0,1,Yes,2,0,Yes,,3
+California,CA,2,0,2,2,Effectively Closed,2,0,Yes,1,8
+Colorado,CO,2,0,2,2,Yes,2,0,Yes,,8
+Connecticut,CT,2,0,2,Other,Yes,2,1,Yes,"2, 3",7
+Delaware,DE,2,3,2,1,Yes,2,1,Yes,,11
+District of Columbia,DC,2,0,2,1,Yes,2,0,Yes,,7
+Florida,FL,2,1,2,Other,Yes,2,0,Yes,4,7
+Georgia,GA,2,0,2,1,Yes,2,1,Yes,5,8
+Hawaii,HI,2,3,2,1,Yes,2,0,Yes,,10
+Idaho,ID,2,0,2,2,Effectively Closed,2,0,Yes,,8
+Illinois,IL,2,0,2,2,Yes,2,0,Yes,,8
+Indiana,IN,2,0,2,2,Yes,2,1,Yes,,9
+Iowa,IA,0,0,2,1,Yes,2,0,Yes,5,5
+Kansas,KS,2,1,2,1,Yes,1,0,Yes,,7
+Kentucky,KY,2,3,1,2,Yes,2,1,Yes,"2, 6",11
+Louisiana,LA,2,0,0,1,Yes,2,1,Yes,,6
+Maine,ME,2,3,2,1,Yes,2,0,Yes,,10
+Maryland,MD,2,3,2,1,Yes,2,1,Yes,,11
+Massachusetts,MA,2,3,2,1,Yes,2,0,Yes,2,10
+Michigan,MI,2,0,2,2,Yes,2,0,Yes,,8
+Minnesota,MN,2,0,0,0,Yes,2,0,Yes,,4
+Mississippi,MS,2,0,2,1,Yes,2,1,Yes,,8
+Missouri,MO,2,0,2,1,Yes,2,0,Yes,,7
+Montana,MT,2,3,2,2,Yes,2,0,Yes,,11
+Nebraska,NE,0,0,0,1,Yes,2,0,Yes,7,3
+Nevada,NV,2,0,2,1,Yes,2,0,Yes,6,7
+New Hampshire,NH,2,0,2,1,Yes,2,0,Yes,,7
+New Jersey,NJ,2,0,1,2,Yes,2,0,Yes,,7
+New Mexico,NM,2,2,2,2,Yes,1,0,Yes,6,9
+New York,NY,2,0,2,2,Yes,2,1,Yes,2,9
+North Carolina,NC,2,0,2,1,Yes,2,0,Yes,6,7
+North Dakota,ND,0,1,2,0,Yes,2,0,Yes,5,5
+Ohio,OH,2,3,2,2,Yes,2,1,Yes,,12
+Oklahoma,OK,1,1,2,1,Yes,Other,0,Yes,8,5
+Oregon,OR,2,0,1,2,Yes,2,0,Yes,,7
+Pennsylvania,PA,2,0,2,2,Yes,2,0,Yes,,8
+Rhode Island,RI,2,3,1,Other,Yes,2,1,Yes,3,9
+South Carolina,SC,2,0,2,2,Yes,2,0,Yes,,8
+South Dakota,SD,0,0,0,1,Yes,0,0,Yes,,1
+Tennessee,TN,2,0,2,1,Yes,2,0,Yes,,7
+Texas,TX,2,1,0,1,Yes,2,0,Yes,9,6
+Utah,UT,1,3,0,0,Yes,2,0,Yes,,6
+Vermont,VT,2,3,2,1,Yes,2,0,Yes,10,10
+Virginia,VA,2,0,2,1,Yes,2,0,Yes,5,7
+Washington,WA,2,0,2,2,Yes,2,0,Yes,,8
+West Virginia,WV,2,1,2,Other,Yes,2,1,Yes,3,8
+Wisconsin,WI,2,0,2,2,Yes,2,0,Yes,,8
+Wyoming,WY,0,3,0,1,Yes,2,0,Yes,,6

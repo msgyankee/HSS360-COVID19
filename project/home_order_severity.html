@@ -77,20 +77,20 @@ var choropleth = new SVGChoropleth({
 
 	data: choroplethData, //dataset used to associate ids and data
 
-	id_field: function(d) { return "c_"+d["Location"] },	//function that returns the field in the dataset that corresponds to the ids to color
+	id_field: function(d) { return "c_"+state_id_from_abbr(d["Abbreviation"]) },	//function that returns the field in the dataset that corresponds to the ids to color
 
 	color_field: function(d) { return d["score"] }, //function that returns the value in the dataset that determines what color each part of the map should be colored
 
 	color_scale: d3.scale.linear() //the function that determines what colors to assign to the map based on value
     				.domain([1,12]) //value points
-    				.range(["silver", "white", "red","maroon"])
+    				.range(["red","maroon"])
     , 
     
     color_target: "fill", //the entity to color
 
 	mouseover_caption: 		//function that determines the caption that is displayed when the mouse hovers over a colored part of the map
 		function(d,feature,obj) { //d = the associated piece of data (from the data set) associated with the shape feature; feature = the shape feature's own data; obj = the d3 object of the shape feature
-				return Location(d["Location"])+" (#"+d["Location"]+")<br><b>"+(Math.round(d["score"]*100))+"%</b> State's score<br>";
+				return d["Location"]+" (#"+d["Location"]+")<br><b>"+(Math.round(d["score"]*100))+"%</b> State's score<br>";
 	},
 	
 	caption_id: "tooltip", //necessary for mouseover captions, etc.
