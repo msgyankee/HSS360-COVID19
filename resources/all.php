@@ -62,7 +62,7 @@ var d3VizObj = {
 	load: function() { //two for one -- loads maps and data in one go
 		if(typeof debug == "undefined") debug = false;
 		if(typeof debug_verbose == "undefined") debug_verbose = false;
-		if(debug||!debug_verbose) console.log("D3Viz object loading -- debug enabled");
+		if(debug&&!debug_verbose) console.log("D3Viz object loading -- debug enabled");
 		if(debug_verbose) console.log("D3Viz object loading -- verbose debug enabled");
 	
 		d3VizObj.addHook("run_after_map_loaded",function() { d3VizObj.loadData(); });
