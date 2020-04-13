@@ -4,7 +4,7 @@
 <title>Flexible data template</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=10" />
-<link rel="stylesheet" type="text/css" href="examples.css"></link>
+<link rel="stylesheet" type="text/css" href="./css/style.css"></link>
 <script src="../resources/d3.v3.min.js"></script>    
 <script src="../resources/topojson.v1.min.js"></script>
 <script src="../resources/d3.geo.projection.v0.min.js"></script>
@@ -23,7 +23,7 @@ var map = new d3SVGMap({
 	div: "#map",
 	width: 960,
 	height: window.innerHeight,
-	mapfile: "./us.counties.json",
+	mapfile: "./data/us.counties.json",
 	projection_name: "albersUsa",
 	//projection_rotate: [0,0,0], //don't rotate the albersUsa projection or else it won't work -- it is special in this way
 	projection_scale: 1280,
@@ -62,7 +62,7 @@ var map = new d3SVGMap({
 
 var choroplethData = new d3Data({
 	name: "Severity of Preventative Measures",
-	csv: "implement_data.csv",
+	csv: "./data/implement_data.csv",
 })
 //note that this dataset does not have a latLon constructor -- it doesn't use that, so we just omit it
 
@@ -75,7 +75,7 @@ var choroplethData = new d3Data({
 //create a choropleth visualization
 var choropleth = new SVGChoropleth({
 
-	data: unemploymentData, //dataset used to associate ids and data
+	data: choroplethData, //dataset used to associate ids and data
 
 	id_field: function(d) { return "c_"+d["Location"] },	//function that returns the field in the dataset that corresponds to the ids to color
 
