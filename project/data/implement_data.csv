@@ -1,0 +1,52 @@
+Location,Abbreviation,stay_at_home_order,mandatory_quarantine_for_travelers,non_essential_business_closures,large_gathering_bans,state_mandated_school_closures,bar_restaurant_limits,primary_election_postponement,Emergency Declaration,footnotes,score
+Alabama,AL,2,0,2,1,Yes,2,1,Yes,,8
+Alaska,AK,2,3,2,2,Yes,2,0,Yes,,11
+Arizona,AZ,2,1,2,1,Yes,2,0,Yes,,8
+Arkansas,AR,0,0,0,1,Yes,2,0,Yes,,3
+California,CA,2,0,2,2,Effectively Closed,2,0,Yes,1,8
+Colorado,CO,2,0,2,2,Yes,2,0,Yes,,8
+Connecticut,CT,2,0,2,Other,Yes,2,1,Yes,"2, 3",7
+Delaware,DE,2,3,2,1,Yes,2,1,Yes,,11
+District of Columbia,DC,2,0,2,1,Yes,2,0,Yes,,7
+Florida,FL,2,1,2,Other,Yes,2,0,Yes,4,7
+Georgia,GA,2,0,2,1,Yes,2,1,Yes,5,8
+Hawaii,HI,2,3,2,1,Yes,2,0,Yes,,10
+Idaho,ID,2,0,2,2,Effectively Closed,2,0,Yes,,8
+Illinois,IL,2,0,2,2,Yes,2,0,Yes,,8
+Indiana,IN,2,0,2,2,Yes,2,1,Yes,,9
+Iowa,IA,0,0,2,1,Yes,2,0,Yes,5,5
+Kansas,KS,2,1,2,1,Yes,1,0,Yes,,7
+Kentucky,KY,2,3,1,2,Yes,2,1,Yes,"2, 6",11
+Louisiana,LA,2,0,0,1,Yes,2,1,Yes,,6
+Maine,ME,2,3,2,1,Yes,2,0,Yes,,10
+Maryland,MD,2,3,2,1,Yes,2,1,Yes,,11
+Massachusetts,MA,2,3,2,1,Yes,2,0,Yes,2,10
+Michigan,MI,2,0,2,2,Yes,2,0,Yes,,8
+Minnesota,MN,2,0,0,0,Yes,2,0,Yes,,4
+Mississippi,MS,2,0,2,1,Yes,2,1,Yes,,8
+Missouri,MO,2,0,2,1,Yes,2,0,Yes,,7
+Montana,MT,2,3,2,2,Yes,2,0,Yes,,11
+Nebraska,NE,0,0,0,1,Yes,2,0,Yes,7,3
+Nevada,NV,2,0,2,1,Yes,2,0,Yes,6,7
+New Hampshire,NH,2,0,2,1,Yes,2,0,Yes,,7
+New Jersey,NJ,2,0,1,2,Yes,2,0,Yes,,7
+New Mexico,NM,2,2,2,2,Yes,1,0,Yes,6,9
+New York,NY,2,0,2,2,Yes,2,1,Yes,2,9
+North Carolina,NC,2,0,2,1,Yes,2,0,Yes,6,7
+North Dakota,ND,0,1,2,0,Yes,2,0,Yes,5,5
+Ohio,OH,2,3,2,2,Yes,2,1,Yes,,12
+Oklahoma,OK,1,1,2,1,Yes,Other,0,Yes,8,5
+Oregon,OR,2,0,1,2,Yes,2,0,Yes,,7
+Pennsylvania,PA,2,0,2,2,Yes,2,0,Yes,,8
+Rhode Island,RI,2,3,1,Other,Yes,2,1,Yes,3,9
+South Carolina,SC,2,0,2,2,Yes,2,0,Yes,,8
+South Dakota,SD,0,0,0,1,Yes,0,0,Yes,,1
+Tennessee,TN,2,0,2,1,Yes,2,0,Yes,,7
+Texas,TX,2,1,0,1,Yes,2,0,Yes,9,6
+Utah,UT,1,3,0,0,Yes,2,0,Yes,,6
+Vermont,VT,2,3,2,1,Yes,2,0,Yes,10,10
+Virginia,VA,2,0,2,1,Yes,2,0,Yes,5,7
+Washington,WA,2,0,2,2,Yes,2,0,Yes,,8
+West Virginia,WV,2,1,2,Other,Yes,2,1,Yes,3,8
+Wisconsin,WI,2,0,2,2,Yes,2,0,Yes,,8
+Wyoming,WY,0,3,0,1,Yes,2,0,Yes,,6
