@@ -83,14 +83,14 @@ var choropleth = new SVGChoropleth({
 
 	color_scale: d3.scale.linear() //the function that determines what colors to assign to the map based on value
     				.domain([1,12]) //value points
-    				.range(["red","maroon"])
+    				.range(["pink","maroon"])
     , 
     
     color_target: "fill", //the entity to color
 
 	mouseover_caption: 		//function that determines the caption that is displayed when the mouse hovers over a colored part of the map
 		function(d,feature,obj) { //d = the associated piece of data (from the data set) associated with the shape feature; feature = the shape feature's own data; obj = the d3 object of the shape feature
-				return d["Location"]+" (#"+d["Location"]+")<br><b>"+(Math.round(d["score"]*100))+"%</b> State's score<br>";
+				return d["Location"]+ ": " + d["score"];
 	},
 	
 	caption_id: "tooltip", //necessary for mouseover captions, etc.
@@ -120,8 +120,8 @@ window.onload = init;
 <body>
 	<div id="map"></div>
 	<div id="texts">
-		<div id="title">US unemployment rates</div>
-		<div id="author">by Alex Wellerstein</div>
+		<div id="title">Implementations of U.S. Stay-At-Home Orders</div>
+		<div id="author">by Laina Emmons, Matthew Gorman, Kirsten Meidlinger, Mark Krapinski, and Dasha Yerokin</div>
 		<hr>
 		<p>
 		A choropleth is a map where various regions are colored according to a data value. 
