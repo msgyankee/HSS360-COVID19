@@ -11,13 +11,14 @@
 <script src="../resources/jquery-1.10.2.js"></script>
 <script src="../resources/shared.js"></script>
 <script src="../resources/all.php"></script>
+<script src="../resources/data.js"></script>
 
 <script type="text/javascript">
 /* Flexible D3.js global data viewer — by Alex Wellerstein, 2015-2016, v2.0 */
 	
 function dateToArr(date){
-	var split = date.split("/");
-	return [parseInt(split[2]), parseInt(split[0]), parseInt(split[1])];
+	var split = date.split("-");
+	return [parseInt(split[0]), parseInt(split[1]), parseInt(split[2].substring(0,split[2].length-1))];
 }
 	
 /* MAP OPTIONS */
@@ -64,7 +65,7 @@ var map = new d3SVGMap({
 //Here is where you should put the data files, in csv format. 
 
 var SAHdata = new d3Data({
-	name: "Stay at Home Orders",
+	name: "us-states",
 	csvext: "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv"
 })
 
@@ -82,12 +83,15 @@ var SAHdata = new d3Data({
 
 //another one for yearly totals
 var color_linear_daily = d3.scale.linear()
-    .domain([-100,-5,0,65]) //minimum and maximum or other fields
-    .range(["silver","green","purple", "red"]); //start and end colors
+    .domain([-100,-5,0,1,5]) //minimum and maximum or other fields
+    .range(["silver","green","white", "maroon","crimson"]); //start and end colors
 
 
-var global_date = "4/7/2020";
+var global_date = "2020-01-22";
+var global_yesterday = "2020-01-21";
 var hover_state = "";
+var global_rates = new Array(51);
+	global_rates.fill(0);
 	
 //create a choropleth visualization
 var choropleth = new SVGChoropleth({
@@ -95,24 +99,26 @@ var choropleth = new SVGChoropleth({
 
 	data: SAHdata,
 
-	id_field: function(d) { return "c_"+state_id_from_abbr(d["Abbreviation"]) }, //function that returns the field in the dataset that corresponds to map location ids
+	id_field: function(d) { return "c_"+state_id_from_name(d["state"]) }, //function that returns the field in the dataset that corresponds to map location ids
 
-	color_field: function(d) { d["DifFirstCaseStayHome"]}, //function that returns the value in the dataset that determines what color each part of the map should be colored
+	color_field: function(d) { return -100 }, //function that returns the value in the dataset that determines what color each part of the map should be colored
 
 	color_scale: color_linear_daily, //the function that determines what colors to assign to the map based on value	
 
 	mouseover_caption: 		//function that determines the caption that is displayed when the mouse hovers over a colored part of the map
 		function(d) {
-			hover_state = d["State"];
+			hover_state = d["state"];
 			
-			return "<b><big>"+d["State"]+"</big></b><br>"
-				+ "Cumulative Cases Today: <div id='datec'>"+d[global_date + "c"]+"</div><br>"
+			return "<b><big>"+d["state"]+"</big></b><br>"
+					+ "<big>Percentage Change: <div id='rate'>" +global_rates[getIndex(d['state'])]+ "</div></big><br>"
+					
+					+ "Cumulative Cases Today: <div id='datec'>"+d[global_date + "c"]+"</div><br>"
 					+ "Cumulative Deaths Today: <div id='dated'>"+d[global_date+ "d"]+"</div><br><br>"
-					+ "First Confirmed Case: "+d["firstCaseDate"] +"<br>"
-					+ "Stay at Home Ordered: "+d["stayAtHome"] +"<br>"
-					+ "Difference in days: "+d["DifFirstCaseStayHome"] +"<br>"
-					+ "Acted Within Two Weeks? "+d["LessThan2Weeks"] + "<br>"
-					+ "State of Emergency Declaration: " +d["stateOfEmergency"];
+					+ "Cumulative Cases Yesterday: <div id='yc'>"+d[global_yesterday + "c"]+"</div><br>"
+					+ "Cumulative Deaths Yesterday: <div id='yd'>"+d[global_yesterday+ "d"]+"</div><br><br>"				
+			
+					+ "First Confirmed Case: "+getFirstDate(d["state"]) +"<br>"
+					+ "Stay at Home Ordered: "+getHome(d["state"]);
 		}
 })
 
@@ -134,37 +140,60 @@ var timeline = buildTimeline({
 	onDateTick:  //function that is triggered each time the date ticks — could update a caption, for example
 		function(currentDate) { //simple example that would change the text of an element with the id of "date_status":
 			//note that currentDate[0] means get the YEAR only
-			global_date = String(currentDate[1]) + "/" + String(currentDate[2]) + "/" + String(currentDate[0]);
+			global_date = String(currentDate[0]) + "-";
+			if (currentDate[1] < 10) global_date += '0' + String(currentDate[1]) + "-";
+			else { global_date += String(currentDate[1]) + "-";}
+			if (currentDate[2] < 10) global_date += '0' + String(currentDate[2]);
+			else { global_date += String(currentDate[2]); }
 			
-			if(currentDate[0]==2020 && currentDate[4] && currentDate[7]) {
+			var cDate = new Date(currentDate[1] + "/" + currentDate[2] + "/" + currentDate[0]);
+					
+			var yDate = new Date(cDate.getTime());
+			yDate.setDate(cDate.getDate()- 1);
+			var yArr = [yDate.getFullYear(), yDate.getMonth()+1, yDate.getDate()];
+			global_yesterday = String(yArr[0]) + "-";
+					
+					
+			if (yArr[1] < 10) global_yesterday += '0' + String(yArr[1]) + "-";
+			else { global_yesterday += String(yArr[1]) + "-";}
+			if(yArr[2] < 10) global_yesterday += '0' + String(yArr[2]);
+			else { global_yesterday += String(yArr[2]); }
+			
+			if(currentDate[0]==2020 && currentDate[1] && currentDate[21]) {
 				choropleth.color_field = function(d) {
-					if(d["State"] == hover_state){
+					if(d["state"] == hover_state){
 						if(document.getElementById("datec") != null)document.getElementById("datec").innerHTML = String(d[global_date + 'c']);
 						if(document.getElementById("dated") != null)document.getElementById("dated").innerHTML = String(d[global_date + 'd']);
+						if(document.getElementById("yc") != null)document.getElementById("yc").innerHTML = String(d[global_yesterday + 'c']);
+						if(document.getElementById("yd") != null)document.getElementById("yd").innerHTML = String(d[global_yesterday + 'd']);
+						if(document.getElementById("rate") != null)document.getElementById("rate").innerHTML = 'N/A';
 					}
-					return d["DifFirstCaseStayHome"];
+					return -100;
 				};
 				document.getElementById("date_status").innerHTML = String(currentDate[1]) + "/" + String(currentDate[2]) + "/" + String(currentDate[0]);
+				
 			} else {
 				choropleth.color_field = function(d) {
 					
-					if(d["State"] == hover_state){
+					if(d["state"] == hover_state){
 						if(document.getElementById("datec") != null)document.getElementById("datec").innerHTML = String(d[global_date + 'c']);
 						if(document.getElementById("dated") != null)document.getElementById("dated").innerHTML = String(d[global_date + 'd']);
+						if(document.getElementById("yc") != null)document.getElementById("yc").innerHTML = String(d[global_yesterday + 'c']);
+						if(document.getElementById("yd") != null)document.getElementById("yd").innerHTML = String(d[global_yesterday + 'd']);
 					}
 					
-					if(d["stayAtHome"] == "N/A") return -100;
 					
-					var cDate = new Date(currentDate[1] + "/" + currentDate[2] + "/" + currentDate[0]);
-					var caseDate = new Date(d['firstCaseDate']);
-					var sahDate = new Date(d["stayAtHome"]);
+					var caseDate = new Date(getFirstDate(d["state"]));
 					
-					if(cDate < caseDate) return -100;
-					else if (cDate > sahDate) return d["DifFirstCaseStayHome"];
-					else {
-						return (cDate - caseDate) / (1000*60*60*24);
-					}
 					
+					if(cDate <= caseDate) return -100;
+					var rate = (d[global_date+'c'] -  d[global_yesterday+'c'])/d[global_yesterday+'c'];
+					
+					if(d['state'] == hover_state && document.getElementById("rate") != null)document.getElementById("rate").innerHTML = rate;
+					global_rates[getIndex(d['state'])] = rate;
+					return rate;
+
+																										
 				};
 				document.getElementById("date_status").innerHTML = String(currentDate[1]) + "/" + String(currentDate[2]) + "/" + String(currentDate[0]);			
 			}
@@ -182,7 +211,7 @@ var timeline = buildTimeline({
 
 //startup (runs after all elements/scripts/etc. on the page have loaded).
 function init() {
-	window.debug = true; //show some information in the console
+	window.debug = false; //show some information in the console
 	window.debug_verbose = false; //show a LOT of information in the console
 	d3VizObj.load(); //loads all visualization elements
 }
@@ -192,12 +221,12 @@ window.onload = init;
 <body>
 	<div id="map"></div>
 	<div id="texts">
-		<div id="title">Responsiveness of Strict Stay at Home Orders</div>
+		<div id="title">COVID-19 Rates Over Time</div>
 		<div id="author">by Matt Gorman, Laina Emmons, Kirsten Meidlinger, Dasha Yerokhin, and Mark Krupinski.</div>
 		<hr>
 		<div id="options"></div>
 		<div id="slider"></div>
-		<div id="date_status">4/7/2020</div>
+		<div id="date_status"></div>
         <p>Shows how responsive each state was at issuing a stay at home order in regards to their first confirmed positive case of COVID-19</p><br>
 		<p>On the map states will appear silver until their first case passes. At that point, they will turn purple, and become closer to red as time goes on and they have not issued a Stay at Home order, at which point their color will freeze. States that remain silver have not implemented a statewide Stay at Home Order</p>
 	</div>
