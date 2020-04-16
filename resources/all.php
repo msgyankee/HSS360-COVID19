@@ -62,7 +62,7 @@ var d3VizObj = {
 	load: function() { //two for one -- loads maps and data in one go
 		if(typeof debug == "undefined") debug = false;
 		if(typeof debug_verbose == "undefined") debug_verbose = false;
-		if(debug&&!debug_verbose) console.log("D3Viz object loading -- debug enabled");
+		if(debug||!debug_verbose) console.log("D3Viz object loading -- debug enabled");
 		if(debug_verbose) console.log("D3Viz object loading -- verbose debug enabled");
 	
 		d3VizObj.addHook("run_after_map_loaded",function() { d3VizObj.loadData(); });
@@ -112,7 +112,7 @@ function d3Data(options) {
 	d3VizObj.data.push(this);
 	this.id = d3VizObj.data.length-1;
 	
-	this.load = function () {
+	this.load = async function () {
 		if(obj.csv) {
 			this.delim = ",";
 			this.file = obj.csv;
@@ -146,9 +146,28 @@ function d3Data(options) {
 				d3VizObj.runHook("run_after_data_loaded",obj);
 				d3VizObj.is_loaded(obj);
 			})
-		} else {
+		} else if(obj.csvext) {
+            obj.csv = obj.csvext;
+            obj.delim = ',';
+            obj.file = obj.csv;
+            obj.filetype = "CSV";
+            d3.csv(this.csvext, function(error, data){
+                    if(error) console.log(error);
+                    else{ 
+                        obj.data = data;
+                        console.log(obj);
+                        d3VizObj.runHook("run_after_data_loaded",obj);
+                        d3VizObj.is_loaded(obj);
+                    } 
+                });
+            
+        }
+
+        else {
 			if(debug||obj.debug) console.log("No file specified!"); //maybe someday add other types of support
-			d3VizObj.is_loaded(this);
+			d3VizObj.runHook("run_after_data_loaded",obj)
+            d3VizObj.is_loaded(this);
+
 		}	
 	}		
 }
@@ -457,7 +476,7 @@ function d3GMap(options) {
 	obj.maptype = "GMap";
 	d3VizObj.maps.push(obj); obj.id = d3VizObj.maps.length-1;
 	if(typeof obj.debug == "undefined") obj.debug=false;
-	if(typeof obj.padding == "undefined") obj.padding = 50; //padding to extend boundary so markers aren't cut -- can be modified
+	if(typeof obj.padding == "undefined") obj.padding = 50; //padding to extend boundary so markers aren't cut -- can be modified
 
 	this.load = function () {
 		if(debug) console.log("Loading Google Map");
