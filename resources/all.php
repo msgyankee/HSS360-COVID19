@@ -6,6 +6,95 @@ v.3.0 (2017) -- now supports Google Maps
 
 */
 
+var stop =[]; //Global variable updated from data load that holds the dynamic stop date for Timelines
+/// START CUSTOM PREPROCESSING FUNCTIONS
+
+const indexMap = {
+    'Alabama': 0,
+    'Alaska': 1,
+    'Arizona': 2,
+    'Arkansas': 3,
+    'California': 4,
+    'Colorado': 5,
+    'Connecticut': 6,
+    'Delaware': 7,
+    'District of Columbia': 8,
+    'Florida': 9,
+    'Georgia': 10,
+    'Hawaii': 11,
+    'Idaho': 12,
+    'Illinois': 13,
+    'Indiana': 14,
+    'Iowa': 15,
+    'Kansas': 16,
+    'Kentucky': 17,
+    'Louisiana': 18,
+    'Maine': 19,
+    'Maryland': 20,
+    'Massachusetts': 21,
+    'Michigan': 22,
+    'Minnesota': 23,
+    'Mississippi': 24,
+    'Missouri': 25,
+    'Montana': 26,
+    'Nebraska': 27,
+    'Nevada': 28,
+    'New Hampshire': 29,
+    'New Jersey': 30,
+    'New Mexico': 31,
+    'New York': 32,
+    'North Carolina': 33,
+    'North Dakota': 34,
+    'Ohio': 35,
+    'Oklahoma': 36,
+    'Oregon': 37,
+    'Pennsylvania': 38,
+    'Rhode Island': 39,
+    'South Carolina': 40,
+    'South Dakota': 41,
+    'Tennessee': 42,
+    'Texas': 43,
+    'Utah': 44,
+    'Vermont': 45,
+    'Virginia': 46,
+    'Washington': 47,
+    'West Virginia': 48,
+    'Wisconsin': 49,
+    'Wyoming': 50
+}
+
+function start(data){
+    var results = [];
+    for (var state in indexMap){
+        results.push({'state' : state});
+    }
+
+    data.forEach(function (entry, index){
+        var datec = entry.date + 'c';
+        var dated = entry.date + 'd';
+
+        if(!(datec in results[0])){
+            results.forEach(function (row, index){
+                row[datec] = 0;
+                row[dated] = 0;
+            });
+        }
+        if(entry.state != "American Samoa" && entry.state != "Guam" && entry.state != "Northern Mariana Islands" && entry.state != "Puerto Rico" && entry.state != "Virgin Islands"){
+			results[indexMap[entry.state]][datec] = entry.cases;
+            results[indexMap[entry.state]][dated] = entry.deaths;    
+        }
+    });
+    return results;
+}
+
+function latest(results){
+    var keys = Object.keys(results[0]);
+    var split = keys[keys.length-1].split("-");
+    return [parseInt(split[0]), parseInt(split[1]), parseInt(split[2].substring(0,split[2].length-1))];
+}
+
+
+///END PREPROCESSING FUNCTIONS
 
 var d3VizObj = {
 	//holds data objects
@@ -62,11 +151,11 @@ var d3VizObj = {
 	load: function() { //two for one -- loads maps and data in one go
 		if(typeof debug == "undefined") debug = false;
 		if(typeof debug_verbose == "undefined") debug_verbose = false;
-		if(debug&&!debug_verbose) console.log("D3Viz object loading -- debug enabled");
+		if(debug||!debug_verbose) console.log("D3Viz object loading -- debug enabled");
 		if(debug_verbose) console.log("D3Viz object loading -- verbose debug enabled");
 	
-		d3VizObj.addHook("run_after_map_loaded",function() { d3VizObj.loadData(); });
-		d3VizObj.loadMaps();
+		d3VizObj.addHook("run_after_datas_loaded",function() { d3VizObj.loadMaps(); });
+		d3VizObj.loadData();
 	},
 	loadMaps: function() { //load all the maps
 		d3VizObj.runHook("run_before_maps_loaded");
@@ -112,7 +201,7 @@ function d3Data(options) {
 	d3VizObj.data.push(this);
 	this.id = d3VizObj.data.length-1;
 	
-	this.load = function () {
+	this.load = async function () {
 		if(obj.csv) {
 			this.delim = ",";
 			this.file = obj.csv;
@@ -147,9 +236,32 @@ function d3Data(options) {
 				d3VizObj.runHook("run_after_data_loaded",obj);
 				d3VizObj.is_loaded(obj);
 			})
-		} else {
+		} else if(obj.csvext) {   //If data is loaded from external source, load it here
+            obj.csv = obj.csvext;
+            obj.delim = ',';
+            obj.file = obj.csv;
+            obj.filetype = "CSV";
+            d3.csv(this.csvext, function(error, data){   //Asynchronously retrive csv, already in array form. Assign latest date to the stop var. 
+                    if(error) console.log(error);
+                    else{ //Data successfully retrieved
+
+						results = start(data); //Preprocesses the data to a usable format
+						stop = latest(results); //Retrieves latest date recieved during preprocessing
+
+                        obj.data = results;
+                        d3VizObj.runHook("run_after_data_loaded",obj);
+                        d3VizObj.is_loaded(obj);
+                    } 
+                });
+            
+        }
+
+        else {		d3VizObj.addHook("run_after_datas_loaded",function() { d3VizObj.loadMaps(); });
+
 			if(debug||obj.debug) console.log("No file specified!"); //maybe someday add other types of support
-			d3VizObj.is_loaded(this);
+			d3VizObj.runHook("run_after_data_loaded",obj)
+            d3VizObj.is_loaded(this);
+
 		}	
 	}		
 }
@@ -458,7 +570,7 @@ function d3GMap(options) {
 	obj.maptype = "GMap";
 	d3VizObj.maps.push(obj); obj.id = d3VizObj.maps.length-1;
 	if(typeof obj.debug == "undefined") obj.debug=false;
-	if(typeof obj.padding == "undefined") obj.padding = 50; //padding to extend boundary so markers aren't cut -- can be modified
+	if(typeof obj.padding == "undefined") obj.padding = 50; //padding to extend boundary so markers aren't cut -- can be modified
 
 	this.load = function () {
 		if(debug) console.log("Loading Google Map");
@@ -1054,9 +1166,12 @@ if(window.debug) console.log("SVGChoropleth script loaded");
 /* Timeline support — allows you to have an animated timeline of events, coded by date or time v.2.0
 
 */
-
+function buildTimeline(options){  //Used to call Timeline Constructor after data is loaded if using external source
+	d3VizObj.addHook("run_after_datas_loaded",function() { new Timeline(options); });
+}
 
 function Timeline(options) {
+	
 	var obj = this;
 	obj.loadOptions(options);
 
@@ -1064,6 +1179,9 @@ function Timeline(options) {
 
 	d3VizObj.controls.push(obj); obj.id = d3VizObj.controls.length-1;
 
+	//If using a dynamic stop date, loads it here. Otherwise, use defined stop date
+	if(Array.isArray(this.stopDate) && this.stopDate.length == 0) this.stopDate = stop;
+			
 	this.currentDate = this.stopDate;
 	this.lastDate = [];
 	this.index = [];
@@ -1099,7 +1217,7 @@ function Timeline(options) {
 	this.dateObj = new DateTimeArray();
 	this.dateObjStopCompare = DateArrayToNumber(this.stopDate);
 
-	this.addSlider = function() {
+	this.addSlider = function() {		
 		obj.slider_index = [];
 		var dob = new DateTimeArray();
 		dob.setDateTime(obj.startDate);
