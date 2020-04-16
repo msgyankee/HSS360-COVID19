@@ -5,7 +5,7 @@ v.3.0 (2017) -- now supports Google Maps
 
 
 */
-
+var stop =[]; //Global variable updated from data load that holds the dynamic stop date for Timelines
 
 var d3VizObj = {
 	//holds data objects
@@ -65,8 +65,8 @@ var d3VizObj = {
 		if(debug||!debug_verbose) console.log("D3Viz object loading -- debug enabled");
 		if(debug_verbose) console.log("D3Viz object loading -- verbose debug enabled");
 	
-		d3VizObj.addHook("run_after_map_loaded",function() { d3VizObj.loadData(); });
-		d3VizObj.loadMaps();
+		d3VizObj.addHook("run_after_datas_loaded",function() { d3VizObj.loadMaps(); });
+		d3VizObj.loadData();
 	},
 	loadMaps: function() { //load all the maps
 		d3VizObj.runHook("run_before_maps_loaded");
@@ -146,14 +146,15 @@ function d3Data(options) {
 				d3VizObj.runHook("run_after_data_loaded",obj);
 				d3VizObj.is_loaded(obj);
 			})
-		} else if(obj.csvext) {
+		} else if(obj.csvext) {   //If data is loaded from external source, load it here
             obj.csv = obj.csvext;
             obj.delim = ',';
             obj.file = obj.csv;
             obj.filetype = "CSV";
-            d3.csv(this.csvext, function(error, data){
+            d3.csv(this.csvext, function(error, data){   //Asynchronously retrive csv, already in array form. Assign latest date to the stop var. 
                     if(error) console.log(error);
                     else{ 
+						stop = [2020,4,7]
                         obj.data = data;
                         console.log(obj);
                         d3VizObj.runHook("run_after_data_loaded",obj);
@@ -163,7 +164,8 @@ function d3Data(options) {
             
         }
 
-        else {
+        else {		d3VizObj.addHook("run_after_datas_loaded",function() { d3VizObj.loadMaps(); });
+
 			if(debug||obj.debug) console.log("No file specified!"); //maybe someday add other types of support
 			d3VizObj.runHook("run_after_data_loaded",obj)
             d3VizObj.is_loaded(this);
@@ -1072,9 +1074,12 @@ if(window.debug) console.log("SVGChoropleth script loaded");
 /* Timeline support — allows you to have an animated timeline of events, coded by date or time v.2.0
 
 */
-
+function buildTimeline(options){  //Used to call Timeline Constructor after data is loaded if using external source
+	d3VizObj.addHook("run_after_datas_loaded",function() { new Timeline(options); });
+}
 
 function Timeline(options) {
+	
 	var obj = this;
 	obj.loadOptions(options);
 
@@ -1082,7 +1087,11 @@ function Timeline(options) {
 
 	d3VizObj.controls.push(obj); obj.id = d3VizObj.controls.length-1;
 
+	//If using a dynamic stop date, loads it here. Otherwise, use defined stop date
+	if(Array.isArray(this.stopDate) && this.stopDate.length == 0) this.stopDate = stop;
+			
 	this.currentDate = this.stopDate;
+	console.log(this.currentDate);
 	this.lastDate = [];
 	this.index = [];
 	
@@ -1117,7 +1126,7 @@ function Timeline(options) {
 	this.dateObj = new DateTimeArray();
 	this.dateObjStopCompare = DateArrayToNumber(this.stopDate);
 
-	this.addSlider = function() {
+	this.addSlider = function() {		
 		obj.slider_index = [];
 		var dob = new DateTimeArray();
 		dob.setDateTime(obj.startDate);
