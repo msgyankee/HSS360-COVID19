@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>COVID-19 Rates Over Time</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=10" />
+<link rel="stylesheet" type="text/css" href="./css/style.css"></link>
+<script src="../resources/d3.v3.min.js"></script>    
+<script src="../resources/topojson.v1.min.js"></script>
+<script src="../resources/d3.geo.projection.v0.min.js"></script>
+<script src="../resources/jquery-1.10.2.js"></script>
+<script src="../resources/shared.js"></script>
+<script src="../resources/all.php"></script>
+
+<script type="text/javascript">
+/* Flexible D3.js global data viewer — by Alex Wellerstein, 2015-2016, v2.0 */
+	
+function dateToArr(date){
+	var split = date.split("/");
+	return [parseInt(split[2]), parseInt(split[0]), parseInt(split[1])];
+}
+	
+/* MAP OPTIONS */
+
+//creates a new D3 JSON map object
+var map = new d3SVGMap({
+	div: "#map",
+	width: 960,
+	height: window.innerHeight,
+	mapfile: "./data/us.counties.json",
+	projection_name: "albersUsa",
+	//projection_rotate: [0,0,0], //don't rotate the albersUsa projection or else it won't work
+	projection_scale: 1280,
+	projection_translate: [960/2,window.innerHeight/2],
+
+	loadobjects: ["states"], 
+
+	setid: function(d,obj) { //for a choropleth, it is important that we make sure that the geoJSON has its ids set correctly
+		return "c_"+d.id; //in this case, us.counties.json has each item tagged with an "id" already, so we just pass that back
+	},
+
+
+	onload: function() {	
+		//this designates what the "tooltip" is going to be
+		map.tooltip = d3.select("#texts")
+					.append("div")
+					.attr("id","tooltip")
+					.text("");
+	},
+
+	graticule_function: d3.geo.graticule(),
+
+});
+
+/* DATA SPECIFIC OPTIONS -- you need to tailor these to your dataset */
+
+// NOTE! Anytime you see something like d["something here"], this means
+// that you are referencing a column in the CSV file. The script is smart
+// enough so that it knows that if you put d["something here"] you mean,
+// "access the data in the column whose header (first entry) is 'something here'."
+// So to adapt this to another dataset, you must know the column heads, and find
+// the places in the template below to change it to your own column headings.
+
+//Here is where you should put the data files, in csv format. 
+
+var SAHdata = new d3Data({
+	name: "Stay at Home Orders",
+	csvext: "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv"
+})
+
+/* END DATA-SPECIFIC OPTIONS */
+
+//initialization functions go here
+
+// Add some very simple captions
+// Visualizations will be "stacked", from the "bottom" up, as we add them. 
+// So if we want captions to be UNDER the data, we need to put them first.
+// This isn't going to do anything but create a layer for them, and assign the class and the map.
+
+
+//set up a color scale for total numbers
+
+//another one for yearly totals
+var color_linear_daily = d3.scale.linear()
+    .domain([-100,-5,0,65]) //minimum and maximum or other fields
+    .range(["silver","green","purple", "red"]); //start and end colors
+
+
+var global_date = "4/7/2020";
+var hover_state = "";
+	
+//create a choropleth visualization
+var choropleth = new SVGChoropleth({
+	map: map,
+
+	data: SAHdata,
+
+	id_field: function(d) { return "c_"+state_id_from_abbr(d["Abbreviation"]) }, //function that returns the field in the dataset that corresponds to map location ids
+
+	color_field: function(d) { d["DifFirstCaseStayHome"]}, //function that returns the value in the dataset that determines what color each part of the map should be colored
+
+	color_scale: color_linear_daily, //the function that determines what colors to assign to the map based on value	
+
+	mouseover_caption: 		//function that determines the caption that is displayed when the mouse hovers over a colored part of the map
+		function(d) {
+			hover_state = d["State"];
+			
+			return "<b><big>"+d["State"]+"</big></b><br>"
+				+ "Cumulative Cases Today: <div id='datec'>"+d[global_date + "c"]+"</div><br>"
+					+ "Cumulative Deaths Today: <div id='dated'>"+d[global_date+ "d"]+"</div><br><br>"
+					+ "First Confirmed Case: "+d["firstCaseDate"] +"<br>"
+					+ "Stay at Home Ordered: "+d["stayAtHome"] +"<br>"
+					+ "Difference in days: "+d["DifFirstCaseStayHome"] +"<br>"
+					+ "Acted Within Two Weeks? "+d["LessThan2Weeks"] + "<br>"
+					+ "State of Emergency Declaration: " +d["stateOfEmergency"];
+		}
+})
+
+//create a timeline controller
+var timeline = buildTimeline({
+	map: map,
+
+	data: SAHdata,
+
+	startDate: [2020,1,21], //an array that says what day to start. Fields are (in order), YEAR, MONTH, DAY, HOUR, MINUTE, SECOND. If you don't want to track a given period of time, you can leave it out, or leave it as 0.
+	stopDate:  [], //same as the above, but for the stop date. 
+	dateTick:  [   0,0,1], //how much should each "tick" of the animation counter advance the date? Same format as above, so 0,0,1,0,0,0 would advance the timer one day per tick
+
+	//dateInfo: //important function! tells the script how to interpret the date. should take in whatever date field, return an array of [year,month,day]. If month/day don't matter, have them return 0,0
+	//the above is blocked out because for this mode, we will not be using a date field, but a date column
+
+	animatorAttachId: "options", //id of whatever element the play/pause/reset button should be attached to (if any)
+
+	onDateTick:  //function that is triggered each time the date ticks — could update a caption, for example
+		function(currentDate) { //simple example that would change the text of an element with the id of "date_status":
+			//note that currentDate[0] means get the YEAR only
+			global_date = String(currentDate[1]) + "/" + String(currentDate[2]) + "/" + String(currentDate[0]);
+			
+			if(currentDate[0]==2020 && currentDate[4] && currentDate[7]) {
+				choropleth.color_field = function(d) {
+					if(d["State"] == hover_state){
+						if(document.getElementById("datec") != null)document.getElementById("datec").innerHTML = String(d[global_date + 'c']);
+						if(document.getElementById("dated") != null)document.getElementById("dated").innerHTML = String(d[global_date + 'd']);
+					}
+					return d["DifFirstCaseStayHome"];
+				};
+				document.getElementById("date_status").innerHTML = String(currentDate[1]) + "/" + String(currentDate[2]) + "/" + String(currentDate[0]);
+			} else {
+				choropleth.color_field = function(d) {
+					
+					if(d["State"] == hover_state){
+						if(document.getElementById("datec") != null)document.getElementById("datec").innerHTML = String(d[global_date + 'c']);
+						if(document.getElementById("dated") != null)document.getElementById("dated").innerHTML = String(d[global_date + 'd']);
+					}
+					
+					if(d["stayAtHome"] == "N/A") return -100;
+					
+					var cDate = new Date(currentDate[1] + "/" + currentDate[2] + "/" + currentDate[0]);
+					var caseDate = new Date(d['firstCaseDate']);
+					var sahDate = new Date(d["stayAtHome"]);
+					
+					if(cDate < caseDate) return -100;
+					else if (cDate > sahDate) return d["DifFirstCaseStayHome"];
+					else {
+						return (cDate - caseDate) / (1000*60*60*24);
+					}
+					
+				};
+				document.getElementById("date_status").innerHTML = String(currentDate[1]) + "/" + String(currentDate[2]) + "/" + String(currentDate[0]);			
+			}
+			choropleth.showData(); //refresh
+		},
+
+	//svgElement: "#circles circle", //the svg element to toggle visibility classes on or off as it animates (optional! if you don't have one, though, you'd better have something happen in the onDateTick function or else it won't do anything interesting)
+
+ 	sliderAttachId: "slider", //the id of the html element to attach a slider to, if you want one
+
+ 	loop: false,
+ });
+
+
+
+//startup (runs after all elements/scripts/etc. on the page have loaded).
+function init() {
+	window.debug = true; //show some information in the console
+	window.debug_verbose = false; //show a LOT of information in the console
+	d3VizObj.load(); //loads all visualization elements
+}
+window.onload = init;
+</script>
+</head>
+<body>
+	<div id="map"></div>
+	<div id="texts">
+		<div id="title">Responsiveness of Strict Stay at Home Orders</div>
+		<div id="author">by Matt Gorman, Laina Emmons, Kirsten Meidlinger, Dasha Yerokhin, and Mark Krupinski.</div>
+		<hr>
+		<div id="options"></div>
+		<div id="slider"></div>
+		<div id="date_status">4/7/2020</div>
+        <p>Shows how responsive each state was at issuing a stay at home order in regards to their first confirmed positive case of COVID-19</p><br>
+		<p>On the map states will appear silver until their first case passes. At that point, they will turn purple, and become closer to red as time goes on and they have not issued a Stay at Home order, at which point their color will freeze. States that remain silver have not implemented a statewide Stay at Home Order</p>
+	</div>
+</body>
+</html>
