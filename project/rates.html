@@ -4,7 +4,7 @@
 <title>COVID-19 Rates Over Time</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=10" />
-<link rel="stylesheet" type="text/css" href="./css/style.css"></link>
+<link rel="stylesheet" type="text/css" href="./css/style.css?ver=1.1"></link>
 <script src="../resources/d3.v3.min.js"></script>    
 <script src="../resources/topojson.v1.min.js"></script>
 <script src="../resources/d3.geo.projection.v0.min.js"></script>
@@ -110,7 +110,7 @@ var choropleth = new SVGChoropleth({
 			hover_state = d["state"];
 			
 			return "<b><big>"+d["state"]+"</big></b><br>"
-					+ "<big>Percentage Change: <div id='rate'>" +global_rates[getIndex(d['state'])]+ "</div></big><br>"
+					+ "<big>Percentage Change: <div id='rate'>" +global_rates[getIndex(d['state'])] * 100 + "%</div></big><br>"
 					
 					+ "Cumulative Cases Today: <div id='datec'>"+d[global_date + "c"]+"</div><br>"
 					+ "Cumulative Deaths Today: <div id='dated'>"+d[global_date+ "d"]+"</div><br><br>"
@@ -228,6 +228,9 @@ window.onload = init;
 		<div id="slider"></div>
 		<div id="date_status"></div>
         <p id="info">Shows the daily percent change of the number of cases.</p><br>
+		<div id="scale"></div>
+		<div id="scale-caption"><div>0%</div> <div>100%</div> <div>500%</div></div>
+		
 		
 	</div>
 </body>
