@@ -190,23 +190,21 @@ function init() {
 window.onload = init;
 </script>
 </head>
-<body>
-    <header>
-      <div class="navbar">
-        <a href="/index.html">Index</a>
-        <a href="/rates.html">Rates</a>
-          <!--
-        <a href="/songs">Songs</a>
-        <a href="/users/new">Create an Account</a>
-        <a href="/songs/new">Post a Song</a> -->
-      </div>
-    </header>
-    
+<body>    
 	<div id="map"></div>
 	<div id="texts">
 		<div id="title">Responsiveness of Strict Stay at Home Orders</div>
 		<div id="author">by Matt Gorman, Laina Emmons, Kirsten Meidlinger, Dasha Yerokhin, and Mark Krupinski.</div>
 		<hr>
+            <div class="dropdown" id="maps_dropdown">
+                <button class="dropbtn" id="maps_dropdown_button">Maps</button>
+                <div class="dropdown-content" id="maps_dropdown_content">
+                    <a href="https://msgyankee.github.io/HSS360-COVID19/project/index.html">Responsiveness of Strict Stay at Home Orders</a>
+                    <a href="https://msgyankee.github.io/HSS360-COVID19/project/home_order_severity.html">Implementations of U.S. Stay-At-Home Orders</a>
+                    <a href="https://msgyankee.github.io/HSS360-COVID19/project/rates.html">COVID-19 Rates Over Time</a>
+                </div>
+            </div>
+        <hr>
 		<div id="options"></div>
 		<div id="slider"></div>
 		<div id="date_status">4/7/2020</div>
