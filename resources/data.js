@@ -74,7 +74,7 @@ var atHome ={
     'Indiana'	: '3/6/2020',
     'Iowa' : 'N/A',
     'Kansas' : '3/30/2020',
-    'Kentucky' : 'N/A',
+    'Kentucky' : '3/26/2020',
     'Louisiana' : '3/23/2020',
     'Maine' :'4/2/2020',
     'Maryland':'3/30/2020',
