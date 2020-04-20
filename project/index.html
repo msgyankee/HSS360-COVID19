@@ -190,12 +190,21 @@ function init() {
 window.onload = init;
 </script>
 </head>
-<body>
+<body>    
 	<div id="map"></div>
 	<div id="texts">
 		<div id="title">Responsiveness of Strict Stay at Home Orders</div>
 		<div id="author">by Matt Gorman, Laina Emmons, Kirsten Meidlinger, Dasha Yerokhin, and Mark Krupinski.</div>
 		<hr>
+            <div class="dropdown" id="maps_dropdown">
+                <button class="dropbtn" id="maps_dropdown_button">Maps</button>
+                <div class="dropdown-content" id="maps_dropdown_content">
+                    <a href="https://msgyankee.github.io/HSS360-COVID19/project/index.html">Responsiveness of Strict Stay at Home Orders</a>
+                    <a href="https://msgyankee.github.io/HSS360-COVID19/project/home_order_severity.html">Implementations of U.S. Stay-At-Home Orders</a>
+                    <a href="https://msgyankee.github.io/HSS360-COVID19/project/rates.html">COVID-19 Rates Over Time</a>
+                </div>
+            </div>
+        <hr>
 		<div id="options"></div>
 		<div id="slider"></div>
 		<div id="date_status">4/7/2020</div>
@@ -203,6 +212,7 @@ window.onload = init;
 		<div id="scale-caption"><div>0</div> <div></div> <div>65</div></div>
         <p>Shows how responsive each state was at issuing a stay at home order in regards to their first confirmed positive case of COVID-19</p><br>
 		<p>On the map states will appear silver until their first case passes. At that point, they will turn purple, and become closer to red as time goes on and they have not issued a Stay at Home order, at which point their color will freeze. States that remain silver have not implemented a statewide Stay at Home Order</p>
+
 	</div>
 </body>
 </html>
