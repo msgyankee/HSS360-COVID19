@@ -13,6 +13,13 @@ body {
 	height: 15px;
 	border: 3px solid black;
 }
+#resscale{
+	margin-top: auto;
+  	background-image: linear-gradient(to right, purple, red);
+	width: 175px;
+	height: 15px;
+	border: 3px solid black;
+}
 
 #scale-caption{
 	width: 180px;
