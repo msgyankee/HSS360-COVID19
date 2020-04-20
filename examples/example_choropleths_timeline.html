@@ -57,10 +57,11 @@ var map = new d3SVGMap({
 // the places in the template below to change it to your own column headings.
 
 //Here is where you should put the data files, in csv format. 
-
+var csvsoruce = "https://raw.githubusercontent.com/msgyankee/HSS360-COVID19/master/examples/USA_compulsory_sterilizations.csv";
+    
 var sterilizationData = new d3Data({
 	name: "US compulsory sterilizations",
-	csv: "USA_compulsory_sterilizations.csv",
+	csv: csvsoruce,
 	each: function(d) {
 		//process the year data -- in this case, we want totally blank values to be non-zero
 		for(var i = 1943; i<=1963; i++){ //each column name is a number, so we can just iterate over them
