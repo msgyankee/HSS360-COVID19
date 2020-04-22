@@ -78,7 +78,7 @@ svg.gmap {
 
 .boundary {
 	fill: silver;
-	stroke: gray;
+	stroke: white;
 	stroke-width: .5px;
 	stroke-opacity: 1;
 }
