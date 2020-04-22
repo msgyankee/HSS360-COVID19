@@ -90,7 +90,7 @@ var choropleth = new SVGChoropleth({
 
 	mouseover_caption: 		//function that determines the caption that is displayed when the mouse hovers over a colored part of the map
 		function(d,feature,obj) { //d = the associated piece of data (from the data set) associated with the shape feature; feature = the shape feature's own data; obj = the d3 object of the shape feature
-				return d["Location"]+ "'s Severity Score: " + d["score"] + "<br>" + "1. Stay At Home Order: " + d["stay_at_home_order"] + "<br>" + "2. Mandatory Quarantining Travelers: " + d["mandatory_quarantine_for_travelers"] + "<br>" + "3. Non-Essential Business Closures: " + d["non_essential_business_closures"] + "<br>" + "4. Large Gathering Bans: " + d["large_gathering_bans"] + "<br>" + "5. State Mandated School Closers: " + d["state_mandated_school_closures"] + "<br>" + "6. Primary Election Postponement: " + d["primary_election_postponement"];
+				return d["Location"]+ "'s Severity Score: " + d["score"] + "<br>" + "1. Stay At Home Order: " + d["stay_at_home_order"] + "<br>" + "2. Mandatory Quarantining Travelers: " + d["mandatory_quarantine_for_travelers"] + "<br>" + "3. Non-Essential Business Closures: " + d["non_essential_business_closures"] + "<br>" + "4. Large Gathering Bans: " + d["large_gathering_bans"] + "<br>" + "5. Bar & Restaurant Limits: " + d["bar_restaurant_limits"] + "<br>" + "6. Primary Election Postponement: " + d["primary_election_postponement"];
 	},
 	
 	caption_id: "tooltip", //necessary for mouseover captions, etc.
