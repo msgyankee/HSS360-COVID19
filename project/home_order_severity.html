@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Flexible data template</title>
+<title>Severity Map</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=10" />
 <link rel="stylesheet" type="text/css" href="./css/style.css"></link>
@@ -27,7 +27,7 @@ var map = new d3SVGMap({
 	projection_name: "albersUsa",
 	//projection_rotate: [0,0,0], //don't rotate the albersUsa projection or else it won't work -- it is special in this way
 	projection_scale: 1280,
-	projection_translate: [960/2,window.innerHeight/2],
+	projection_translate: [960/2,window.innerHeight/2.75],
 	graticule_function: d3.geo.graticule(),
 	
 	loadobjects: ["states"],
@@ -82,7 +82,7 @@ var choropleth = new SVGChoropleth({
 	color_field: function(d) { return d["score"] }, //function that returns the value in the dataset that determines what color each part of the map should be colored
 
 	color_scale: d3.scale.linear() //the function that determines what colors to assign to the map based on value
-    				.domain([1,12]) //value points
+    				.domain([1,13]) //value points
     				.range(["pink","maroon"])
     , 
     
@@ -90,7 +90,7 @@ var choropleth = new SVGChoropleth({
 
 	mouseover_caption: 		//function that determines the caption that is displayed when the mouse hovers over a colored part of the map
 		function(d,feature,obj) { //d = the associated piece of data (from the data set) associated with the shape feature; feature = the shape feature's own data; obj = the d3 object of the shape feature
-				return d["Location"]+ ": " + d["score"];
+				return d["Location"]+ "'s Severity Score: " + d["score"] + "<br>" + "1. Stay At Home Order: " + d["stay_at_home_order"] + "<br>" + "2. Mandatory Quarantining Travelers: " + d["mandatory_quarantine_for_travelers"] + "<br>" + "3. Non-Essential Business Closures: " + d["non_essential_business_closures"] + "<br>" + "4. Large Gathering Bans: " + d["large_gathering_bans"] + "<br>" + "5. Bar & Restaurant Limits: " + d["bar_restaurant_limits"] + "<br>" + "6. Primary Election Postponement: " + d["primary_election_postponement"];
 	},
 	
 	caption_id: "tooltip", //necessary for mouseover captions, etc.
@@ -118,10 +118,15 @@ window.onload = init;
 </script>
 </head>
 <body>
-	<div id="map"></div>
+	<div id="map">
+		<div id="header">
+			<div id="severity_description"> 
+                <p>Kirsten created a severity score for each state, including D.C., that took into account the policies enacted and measures taken to slow the spread of the coronavirus with a data set that Laina found from the Henry J. Kaiser Family Foundation. The score takes into account six categories and it increases when a state enacts a policy in response to the pandemic. The score given per order is relative to what other states are doing. For instance, every state closed schools so that policy is deemed less ‘severe’ as opposed to a more controversial policy such as stay-at-home orders. In the dataset, some states had “Other” written for a category, so we looked up additional information to fill in what best fit that state’s response more recently.</p></div>
+		</div>
+	</div>
 	<div id="texts">
 		<div id="title">Implementations of U.S. Stay-At-Home Orders</div>
-		<div id="author">by Laina Emmons, Matthew Gorman, Kirsten Meidlinger, Mark Krapinski, and Dasha Yerokin</div>
+		<div id="author">by Laina Emmons, Matthew Gorman, Kirsten Meidlinger, Mark Krupinski, and Dasha Yerokhin</div>
 		<hr>
             <div class="dropdown" id="maps_dropdown">
                 <button class="dropbtn" id="maps_dropdown_button">Maps</button>
@@ -132,10 +137,6 @@ window.onload = init;
                 </div>
             </div>
         <hr>
-		<p>
-		A choropleth is a map where various regions are colored according to a data value. 
-		</p>
-		<p> 
 		<div id="options"></div>
 	</div>
 </body>

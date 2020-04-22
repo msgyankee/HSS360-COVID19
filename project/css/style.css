@@ -6,6 +6,16 @@ body {
 	background-color: silver;
 }
 
+@font-face {
+  font-family: Work Sans;
+  src: url(WorkSans-Light.ttf);
+}
+
+@font-face {
+	font-family: Work Sans Black;
+	src: url(WorkSans-Black.ttf);
+}
+
 #scale{
 	margin-top: auto;
   	background-image: linear-gradient(to right, white, maroon,crimson);
@@ -36,7 +46,7 @@ body {
 }
 
 svg {
-	background-color: white;
+	background-color: #D3D3D3;
 	width: 100%;
 	top: 0px;
 	bottom: 0px;
@@ -76,7 +86,7 @@ svg.gmap {
 #states path {
 	fill: silver;
 	stroke-width: .5px;
-	stroke: gray;
+	stroke: black;
 }
 
 #land path {
@@ -94,12 +104,15 @@ svg.gmap {
 
 #title {
 	font-size: 18pt;
+	text-align: right;
+	font-family: Work Sans Black;
 }
 
 #author {
-	font-size: 10pt;
+	font-size: 12pt;
 	font-style: italic;
 	letter-spacing: 1px;
+	text-align: right;
 }
 
 hr {
@@ -113,9 +126,16 @@ hr {
 	width: 249px;
 	height: 98%;
 	padding: 10px;
-	font-size: 12pt;
-	background-color: silver;
-	border-left: 1px solid gray;
+	font-size: 10pt;
+	background-color: #BC8F8F;
+	font-family: Work Sans;
+}
+
+#header {
+	padding: 5pt;
+	background: #BC8F8F;
+	text-align: center;
+	font-family: Work Sans;
 }
 
 #tooltip {
@@ -283,7 +303,7 @@ circle {
 /* Copied from W3Schools */
 /* Dropdown Button */
 .dropbtn {
-  background-color: #4CAF50;
+  background-color: #8B0000;
   color: white;
   padding: 16px;
   font-size: 16px;
@@ -321,4 +341,4 @@ circle {
 .dropdown:hover .dropdown-content {display: block;}
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
+.dropdown:hover .dropbtn {background-color: #B22222;}
