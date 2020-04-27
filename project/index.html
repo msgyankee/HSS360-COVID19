@@ -106,8 +106,8 @@ var choropleth = new SVGChoropleth({
 			hover_state = d["State"];
 			
 			return "<b><big>"+d["State"]+"</big></b><br>"
-				+ "Cumulative Cases Today: <div id='datec'>"+d[global_date + "c"]+"</div><br>"
-					+ "Cumulative Deaths Today: <div id='dated'>"+d[global_date+ "d"]+"</div><br><br>"
+				+ "Cumulative Cases To Date: <div id='datec'>"+d[global_date + "c"]+"</div><br>"
+					+ "Cumulative Deaths To Date: <div id='dated'>"+d[global_date+ "d"]+"</div><br><br>"
 					+ "First Confirmed Case: "+d["firstCaseDate"] +"<br>"
 					+ "Stay at Home Ordered: "+d["stayAtHome"] +"<br>"
 					+ "Difference in days: "+d["DifFirstCaseStayHome"] +"<br>"
