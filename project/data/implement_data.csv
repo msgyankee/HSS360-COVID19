@@ -1,52 +1,54 @@
 Location,Abbreviation,stay_at_home_order,mandatory_quarantine_for_travelers,non_essential_business_closures,large_gathering_bans,state_mandated_school_closures,bar_restaurant_limits,primary_election_postponement,Emergency Declaration,footnotes,score
-Alabama,AL,Statewide,No Action,All Non-Essential Businesses,>10 People Prohibited,Yes,Closed except for takeout/delivery,Yes,Yes,,8
-Alaska,AK,Statewide,All Travelers,All Non-Essential Businesses,All Gatherings Prohibited,Yes,Closed except for takeout/delivery,No,Yes,,12
-Arizona,AZ,Statewide,From Certain States,All Non-Essential Businesses,>10 People Prohibited,Yes,Closed except for takeout/delivery,No,Yes,,8
-Arkansas,AR,No Action,No Action,No Action,>10 People Prohibited,Yes,Closed except for takeout/delivery,No,Yes,,3
-California,CA,Statewide,No Action,All Non-Essential Businesses,All Gatherings Prohibited,Effectively Closed,Closed except for takeout/delivery,No,Yes,1,9
-Colorado,CO,Statewide,No Action,All Non-Essential Businesses,All Gatherings Prohibited,Yes,Closed except for takeout/delivery,No,Yes,,9
-Connecticut,CT,Statewide,No Action,All Non-Essential Businesses,All Gatherings Prohibited,Yes,Closed except for takeout/delivery,Yes,Yes,"2, 3",10
-Delaware,DE,Statewide,All Travelers,All Non-Essential Businesses,>10 People Prohibited,Yes,Closed except for takeout/delivery,Yes,Yes,,11
-District of Columbia,DC,Statewide,No Action,All Non-Essential Businesses,>10 People Prohibited,Yes,Closed except for takeout/delivery,No,Yes,,7
-Florida,FL,Statewide,From Certain States,All Non-Essential Businesses,>10 People Prohibited,Yes,Closed except for takeout/delivery,No,Yes,4,8
-Georgia,GA,Statewide,No Action,All Non-Essential Businesses,>10 People Prohibited,Yes,Closed except for takeout/delivery,Yes,Yes,5,8
-Hawaii,HI,Statewide,All Travelers,All Non-Essential Businesses,>10 People Prohibited,Yes,Closed except for takeout/delivery,No,Yes,,10
-Idaho,ID,Statewide,No Action,All Non-Essential Businesses,All Gatherings Prohibited,Effectively Closed,Closed except for takeout/delivery,No,Yes,,9
-Illinois,IL,Statewide,No Action,All Non-Essential Businesses,All Gatherings Prohibited,Yes,Closed except for takeout/delivery,No,Yes,,9
-Indiana,IN,Statewide,No Action,All Non-Essential Businesses,All Gatherings Prohibited,Yes,Closed except for takeout/delivery,Yes,Yes,,10
-Iowa,IA,No Action,No Action,All Non-Essential Businesses,>10 People Prohibited,Yes,Closed except for takeout/delivery,No,Yes,5,5
-Kansas,KS,Statewide,From Certain States,All Non-Essential Businesses,>10 People Prohibited,Yes,Limited On-site Service,No,Yes,,7
-Kentucky,KY,Statewide,All Travelers,All Non-Essential Retail Businesses,All Gatherings Prohibited,Yes,Closed except for takeout/delivery,Yes,Yes,"2, 6",12
-Louisiana,LA,Statewide,No Action,No Action,>10 People Prohibited,Yes,Closed except for takeout/delivery,Yes,Yes,,6
-Maine,ME,Statewide,All Travelers,All Non-Essential Businesses,>10 People Prohibited,Yes,Closed except for takeout/delivery,No,Yes,,10
-Maryland,MD,Statewide,All Travelers,All Non-Essential Businesses,>10 People Prohibited,Yes,Closed except for takeout/delivery,Yes,Yes,,11
-Massachusetts,MA,Statewide,All Travelers,All Non-Essential Businesses,>10 People Prohibited,Yes,Closed except for takeout/delivery,No,Yes,2,10
-Michigan,MI,Statewide,No Action,All Non-Essential Businesses,All Gatherings Prohibited,Yes,Closed except for takeout/delivery,No,Yes,,9
-Minnesota,MN,Statewide,No Action,No Action,No Action,Yes,Closed except for takeout/delivery,No,Yes,,4
-Mississippi,MS,Statewide,No Action,All Non-Essential Businesses,>10 People Prohibited,Yes,Closed except for takeout/delivery,Yes,Yes,,8
-Missouri,MO,Statewide,No Action,All Non-Essential Businesses,>10 People Prohibited,Yes,Closed except for takeout/delivery,No,Yes,,7
-Montana,MT,Statewide,All Travelers,All Non-Essential Businesses,All Gatherings Prohibited,Yes,Closed except for takeout/delivery,No,Yes,,12
-Nebraska,NE,No Action,No Action,No Action,>10 People Prohibited,Yes,Closed except for takeout/delivery,No,Yes,7,3
-Nevada,NV,Statewide,No Action,All Non-Essential Businesses,>10 People Prohibited,Yes,Closed except for takeout/delivery,No,Yes,6,7
-New Hampshire,NH,Statewide,No Action,All Non-Essential Businesses,>10 People Prohibited,Yes,Closed except for takeout/delivery,No,Yes,,7
-New Jersey,NJ,Statewide,No Action,All Non-Essential Retail Businesses,All Gatherings Prohibited,Yes,Closed except for takeout/delivery,No,Yes,,8
-New Mexico,NM,Statewide,All Air Travelers,All Non-Essential Businesses,All Gatherings Prohibited,Yes,Limited On-site Service,No,Yes,6,10
-New York,NY,Statewide,No Action,All Non-Essential Businesses,All Gatherings Prohibited,Yes,Closed except for takeout/delivery,Yes,Yes,2,10
-North Carolina,NC,Statewide,No Action,All Non-Essential Businesses,>10 People Prohibited,Yes,Closed except for takeout/delivery,No,Yes,6,7
-North Dakota,ND,No Action,From Certain States,All Non-Essential Businesses,No Action,Yes,Closed except for takeout/delivery,No,Yes,5,5
-Ohio,OH,Statewide,All Travelers,All Non-Essential Businesses,All Gatherings Prohibited,Yes,Closed except for takeout/delivery,Yes,Yes,,13
-Oklahoma,OK,High-risk Groups,From Certain States,All Non-Essential Businesses,>10 People Prohibited,Yes,Closed except for takeout/delivery,No,Yes,8,7
-Oregon,OR,Statewide,No Action,All Non-Essential Retail Businesses,All Gatherings Prohibited,Yes,Closed except for takeout/delivery,No,Yes,,8
-Pennsylvania,PA,Statewide,No Action,All Non-Essential Businesses,All Gatherings Prohibited,Yes,Closed except for takeout/delivery,No,Yes,,9
-Rhode Island,RI,Statewide,All Travelers,All Non-Essential Retail Businesses,>5 People Prohibited,Yes,Closed except for takeout/delivery,Yes,Yes,3,11
-South Carolina,SC,Statewide,No Action,All Non-Essential Businesses,All Gatherings Prohibited,Yes,Closed except for takeout/delivery,No,Yes,,9
-South Dakota,SD,No Action,No Action,No Action,>10 People Prohibited,Yes,No Action,No,Yes,,1
-Tennessee,TN,Statewide,No Action,All Non-Essential Businesses,>10 People Prohibited,Yes,Closed except for takeout/delivery,No,Yes,,7
-Texas,TX,Statewide,From Certain States,No Action,>10 People Prohibited,Yes,Closed except for takeout/delivery,No,Yes,9,6
-Utah,UT,High-risk Groups,All Travelers,No Action,No Action,Yes,Closed except for takeout/delivery,No,Yes,,6
-Vermont,VT,Statewide,All Travelers,All Non-Essential Businesses,>10 People Prohibited,Yes,Closed except for takeout/delivery,No,Yes,10,10
-Virginia,VA,Statewide,No Action,All Non-Essential Businesses,>10 People Prohibited,Yes,Closed except for takeout/delivery,No,Yes,5,7
-Washington,WA,Statewide,No Action,All Non-Essential Businesses,All Gatherings Prohibited,Yes,Closed except for takeout/delivery,No,Yes,,9
-West Virginia,WV,Statewide,From Certain States,All Non-Essential Businesses,>10 People Prohibited,Yes,Closed except for takeout/delivery,Yes,Yes,3,9
-Wisconsin,WI,Statewide,No Action,All Non-Essential Businesses,All Gatherings Prohibited,Yes,Closed except for takeout/delivery,No,Yes,,9
-Wyoming,WY,No Action,All Travelers,No Action,>10 People Prohibited,Yes,Closed except for takeout/delivery,No,Yes,,6
+Alabama,AL,Stay at Home Order,Mandatory Quarantine for Travelers,Non-Essential Business Closures,Large Gatherings Ban,School Closures,Bar/Restaurant Limits,Primary Election Postponement,Emergency Declaration,,
+Alaska,AK,Statewide (38); High-Risk Groups (3); Other (1); Expired (3); No Action (6),All Travelers (14); All Air Travelers (1); From Certain States (6); Other (1); No Action (29),All Non-Essential Businesses (25); All Non-Essential Retail Businesses (4); Certain Non-Essential Businesses (14); Open with Reduced Capacity (2); No Action (6),All Gatherings Prohibited (15); >10 Prohibited (26); 20+ Prohibited (1); Other (4); Expired (2); No Action (3),Closed (12); Closed for School Year (32); Recommended Closure (1); Recommended Closure for School Year (6),Closed Except for Takeout/Delivery (44); Limited On-Site Service (5); Other (1); No Action (1),Postponed (14); Canceled (1); No (36),Yes (51); No (0),,
+Arizona,AZ,Statewide,-,All Non-Essential Businesses,>10 People Prohibited,Closed for School Year,Closed Except for Takeout/Delivery,Postponed,Yes,,8
+Arkansas,AR,Expired*,All Travelers,Certain Non-Essential Businesses*,20+ People Prohibited*,Closed for School Year,Limited On-Site Service*,-,Yes,,10
+California,CA,Statewide,From Certain States,All Non-Essential Businesses,>10 People Prohibited,Closed for School Year,Closed Except for Takeout/Delivery,-,Yes,1,8
+Colorado,CO,-,-,-,>10 People Prohibited,Closed for School Year,Closed Except for Takeout/Delivery,-,Yes,,3
+Connecticut,CT,Statewide,-,All Non-Essential Businesses,All Gatherings Prohibited,Recommended Closure for School Year,Closed Except for Takeout/Delivery,-,Yes,"2, 3",9
+Delaware,DE,High-Risk Groups*,-,Open with Reduced Capacity*,>10 People Prohibited*,Closed for School Year,Closed Except for Takeout/Delivery,-,Yes,,8
+District of Columbia,DC,Statewide,-,All Non-Essential Businesses,Other,Closed,Closed Except for Takeout/Delivery,Postponed,Yes,,10
+Florida,FL,Statewide,All Travelers,All Non-Essential Businesses,>10 People Prohibited,Closed for School Year,Closed Except for Takeout/Delivery,Postponed,Yes,4,11
+Georgia,GA,Statewide,-,All Non-Essential Businesses,>10 People Prohibited,Closed for School Year,Closed Except for Takeout/Delivery,-,Yes,5,7
+Hawaii,HI,Statewide,From Certain States,All Non-Essential Businesses,Other,Recommended Closure for School Year,Closed Except for Takeout/Delivery,-,Yes,,8
+Idaho,ID,Statewide,-,Certain Non-Essential Businesses*,>10 People Prohibited,Closed for School Year,Limited On-Site Service*,Postponed,Yes,,6
+Illinois,IL,Statewide,All Travelers,All Non-Essential Businesses,>10 People Prohibited,Closed for School Year,Closed Except for Takeout/Delivery,-,Yes,,10
+Indiana,IN,Statewide,All Travelers,All Non-Essential Businesses,All Gatherings Prohibited,Recommended Closure,Closed Except for Takeout/Delivery,-,Yes,,9
+Iowa,IA,Statewide,-,All Non-Essential Businesses,All Gatherings Prohibited,Closed,Closed Except for Takeout/Delivery,-,Yes,5,9
+Kansas,KS,Statewide,-,All Non-Essential Businesses,All Gatherings Prohibited,Closed,Closed Except for Takeout/Delivery,Postponed,Yes,,10
+Kentucky,KY,-,-,Certain Non-Essential Businesses,>10 People Prohibited,Closed for School Year,Closed Except for Takeout/Delivery,-,Yes,"2, 6",5
+Louisiana,LA,Statewide,From Certain States,All Non-Essential Businesses,>10 People Prohibited,Closed for School Year,Limited On-Site Service,-,Yes,,7
+Maine,ME,Statewide,Other,All Non-Essential Retail Businesses,All Gatherings Prohibited,Recommended Closure for School Year,Closed Except for Takeout/Delivery,Postponed,Yes,,12
+Maryland,MD,Statewide,-,Certain Non-Essential Businesses,>10 People Prohibited,Closed for School Year,Closed Except for Takeout/Delivery,Postponed,Yes,,6
+Massachusetts,MA,Statewide,All Travelers,All Non-Essential Businesses,>10 People Prohibited,Recommended Closure for School Year,Closed Except for Takeout/Delivery,Postponed,Yes,2,10
+Michigan,MI,Statewide,All Travelers,All Non-Essential Businesses,>10 People Prohibited,Closed,Closed Except for Takeout/Delivery,Postponed,Yes,,11
+Minnesota,MN,Statewide,All Travelers,All Non-Essential Businesses,>10 People Prohibited,Closed for School Year,Closed Except for Takeout/Delivery,-,Yes,,10
+Mississippi,MS,Statewide,-,Certain Non-Essential Businesses*,All Gatherings Prohibited,Closed for School Year,Closed Except for Takeout/Delivery,-,Yes,,9
+Missouri,MO,Statewide,-,Certain Non-Essential Businesses*,-,Closed for School Year,Closed Except for Takeout/Delivery,-,Yes,,4
+Montana,MT,Expired*,-,Certain Non-Essential Businesses*,>10 People Prohibited,Closed for School Year,Closed Except for Takeout/Delivery,Postponed,Yes,,5
+Nebraska,NE,Statewide,-,All Non-Essential Businesses,Expired*,Closed for School Year,Closed Except for Takeout/Delivery,-,Yes,7,5
+Nevada,NV,Expired*,All Travelers,Open with Reduced Capacity*,Expired*,Closed,Closed Except for Takeout/Delivery,-,Yes,6,7
+New Hampshire,NH,-,-,-,>10 People Prohibited,Closed,Closed Except for Takeout/Delivery,-,Yes,,3
+New Jersey,NJ,Statewide,-,All Non-Essential Businesses,>10 People Prohibited,Closed for School Year,Closed Except for Takeout/Delivery,-,Yes,,7
+New Mexico,NM,Statewide,-,All Non-Essential Businesses,>10 People Prohibited,Closed for School Year,Closed Except for Takeout/Delivery,-,Yes,6,7
+New York,NY,Statewide,-,All Non-Essential Retail Businesses,All Gatherings Prohibited,Closed,Closed Except for Takeout/Delivery,Postponed,Yes,2,8
+North Carolina,NC,Statewide,All Air Travelers,All Non-Essential Businesses,All Gatherings Prohibited,Closed for School Year,Limited On-Site Service,-,Yes,6,10
+North Dakota,ND,Statewide,-,All Non-Essential Businesses,All Gatherings Prohibited,Closed,Closed Except for Takeout/Delivery,Canceled,Yes,5,10
+Ohio,OH,Statewide,-,All Non-Essential Businesses,>10 People Prohibited,Closed,Closed Except for Takeout/Delivery,-,Yes,,7
+Oklahoma,OK,-,All Travelers,Certain Non-Essential Businesses,-,Closed,Closed Except for Takeout/Delivery,-,Yes,8,5
+Oregon,OR,Statewide,All Travelers,All Non-Essential Businesses,All Gatherings Prohibited,Closed for School Year,Closed Except for Takeout/Delivery,Postponed,Yes,,13
+Pennsylvania,PA,High-Risk Groups,From Certain States,Certain Non-Essential Businesses*,>10 People Prohibited,Closed for School Year,Other,-,Yes,,5
+Rhode Island,RI,Statewide,-,All Non-Essential Retail Businesses,All Gatherings Prohibited,Closed for School Year,Closed Except for Takeout/Delivery,-,Yes,3,8
+South Carolina,SC,Statewide,-,All Non-Essential Businesses,All Gatherings Prohibited,Closed for School Year,Closed Except for Takeout/Delivery,-,Yes,,9
+South Dakota,SD,Statewide,All Travelers,All Non-Essential Retail Businesses,Other,Closed,Closed Except for Takeout/Delivery,Postponed,Yes,,11
+Tennessee,TN,Statewide,-,Certain Non-Essential Businesses*,All Gatherings Prohibited,Closed for School Year,Closed Except for Takeout/Delivery,-,Yes,,8
+Texas,TX,-,-,-,>10 People Prohibited,Recommended Closure for School Year,-,-,Yes,9,1
+Utah,UT,Statewide,-,Certain Non-Essential Businesses*,>10 People Prohibited,Recommended Closure for School Year,Limited On-Site Service*,-,Yes,,5
+Vermont,VT,Other,From Certain States,-,>10 People Prohibited,Closed for School Year,Closed Except for Takeout/Delivery,-,Yes,10,6
+Virginia,VA,High-Risk Groups,All Travelers,-,-,Closed for School Year,Closed Except for Takeout/Delivery,-,Yes,5,6
+Washington,WA,Statewide,All Travelers,Certain Non-Essential Businesses*,>10 People Prohibited,Closed for School Year,Closed Except for Takeout/Delivery,-,Yes,,9
+West Virginia,WV,Statewide,-,Certain Non-Essential Businesses,>10 People Prohibited,Closed for School Year,Closed Except for Takeout/Delivery,-,Yes,3,7
+Wisconsin,WI,Statewide,-,All Non-Essential Businesses,All Gatherings Prohibited,Closed for School Year,Closed Except for Takeout/Delivery,-,Yes,,9
+Wyoming,WY,Statewide,From Certain States,All Non-Essential Businesses,Other,Closed for School Year,Closed Except for Takeout/Delivery,Postponed,Yes,,9
+,,Statewide,-,Certain Non-Essential Businesses*,All Gatherings Prohibited,Closed for School Year,Closed Except for Takeout/Delivery,-,Yes,,8
+,,-,All Travelers,-,>10 People Prohibited,Closed,Closed Except for Takeout/Delivery,-,Yes,,6
